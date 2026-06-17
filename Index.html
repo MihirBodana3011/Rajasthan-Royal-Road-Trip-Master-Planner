@@ -1,0 +1,2695 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mharo Rajasthan - Royal Road Trip Master Planner</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans & Playfair Display for Royal Serifs -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0c0506;
+            /* Rich Kumkum Palace Night Shadow */
+            background-image: radial-gradient(circle at 50% 0%, #200a0f 0%, #0c0506 80%);
+        }
+
+        .royal-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Palace Heritage Gradient */
+        .heritage-gradient {
+            background: linear-gradient(135deg, #2b0c13 0%, #511210 40%, #0e0507 100%);
+        }
+
+        /* Burnished Royal Gold Borders and Shadows */
+        .royal-gold-border {
+            border: 1px solid rgba(212, 175, 55, 0.25);
+        }
+
+        .royal-gold-glow {
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.15);
+        }
+
+        .royal-gold-text {
+            color: #d4af37;
+        }
+
+        .kesariya-accent {
+            background-color: #f17829;
+        }
+
+        /* Premium Interactive Hover Cards (Magnetic light hover with Gold-Amber tones) */
+        .glass-palace-card {
+            background: rgba(22, 11, 14, 0.82);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.12);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-palace-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(212, 175, 55, 0.06) 0%, transparent 60%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .glass-palace-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(212, 175, 55, 0.35);
+            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.12), inset 0 0 10px rgba(212, 175, 55, 0.05);
+        }
+
+        .glass-palace-card:hover::after {
+            opacity: 1;
+        }
+
+        /* Custom scrollbar matching gold marigold style */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0c0506;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #d4af37;
+            border-radius: 10px;
+        }
+
+        /* Marigold flower pathway garland line */
+        .marigold-garland {
+            background-image: radial-gradient(circle, #f17829 20%, transparent 20%), radial-gradient(circle, #d4af37 20%, transparent 20%);
+            background-size: 8px 8px;
+            background-position: 0 0, 4px 4px;
+        }
+
+        /* Custom tap targets & hide horizontal scrollbar */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Day tab transitions: smooth slide up scale spring */
+        .day-content {
+            animation: fadeInScale 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.97) translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* Smooth spot details transition */
+        .spot-details-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: slideDown 0.3s ease-out forwards;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Glowing pulsing floating button */
+        #audioToggleBtn {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        #audioToggleBtn.playing {
+            background-color: rgba(212, 175, 55, 0.15);
+            border-color: rgba(212, 175, 55, 0.8);
+            color: #d4af37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+            animation: pulseGold 2.2s infinite;
+        }
+
+        @keyframes pulseGold {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.5), 0 0 10px rgba(212, 175, 55, 0.2);
+            }
+
+            70% {
+                transform: scale(1.08);
+                box-shadow: 0 0 0 12px rgba(212, 175, 55, 0), 0 0 20px rgba(212, 175, 55, 0.4);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0), 0 0 10px rgba(212, 175, 55, 0.2);
+            }
+        }
+
+        /* Royal Crest Pulsing */
+        .royal-crest-shield {
+            animation: crestPulse 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.6));
+        }
+
+        @keyframes crestPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.03);
+            }
+        }
+
+        /* Heritage Divider styles */
+        .heritage-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+
+        .heritage-divider:hover {
+            opacity: 0.8;
+        }
+
+        .heritage-divider::before,
+        .heritage-divider::after {
+            content: "";
+            height: 1px;
+            flex-grow: 1;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.4) 50%, transparent);
+        }
+
+        .heritage-symbol {
+            color: #d4af37;
+            font-size: 0.8rem;
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+            letter-spacing: 0.15em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body
+    class="text-stone-100 min-h-screen flex flex-col selection:bg-amber-500 selection:text-slate-900 transition-all duration-300">
+
+    <!-- Top Traditional Marigold Decorative Border -->
+    <div class="h-2 marigold-garland w-full shadow-lg relative z-50"></div>
+
+    <!-- Navigation Header with Royal Crest elements (Flawlessly Responsive) -->
+    <header class="border-b border-stone-850 bg-stone-950/90 backdrop-blur-md sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-2 xs:px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2 xs:gap-3">
+                <!-- Royal Shield Emblem -->
+                <svg viewBox="0 0 100 100" class="w-10 h-10 md:w-12 md:h-12 text-amber-500 royal-crest-shield"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Outer radiating sun rays (flame-like traditional designs) -->
+                    <g stroke="#d4af37" stroke-width="2.5" stroke-linecap="round">
+                        <!-- 8 major rays -->
+                        <path d="M50 10 L50 2" />
+                        <path d="M50 90 L50 98" />
+                        <path d="M10 50 L2 50" />
+                        <path d="M90 50 L98 50" />
+                        <path d="M22 22 L16 16" />
+                        <path d="M78 22 L84 16" />
+                        <path d="M22 78 L16 84" />
+                        <path d="M78 78 L84 84" />
+                    </g>
+                    <g stroke="#f17829" stroke-width="2" stroke-linecap="round">
+                        <!-- 8 intermediate rays -->
+                        <path d="M50 22 C 45 15, 38 18, 38 10" />
+                        <path d="M50 22 C 55 15, 62 18, 62 10" />
+                        <path d="M50 78 C 45 85, 38 82, 38 90" />
+                        <path d="M50 78 C 55 85, 62 82, 62 90" />
+                        <path d="M22 50 C 15 45, 18 38, 10 38" />
+                        <path d="M22 50 C 15 55, 18 62, 10 62" />
+                        <path d="M78 50 C 85 45, 82 38, 90 38" />
+                        <path d="M78 50 C 85 55, 82 62, 90 62" />
+                    </g>
+
+                    <!-- Sun disk border -->
+                    <circle cx="50" cy="50" r="30" fill="#24070a" stroke="#d4af37" stroke-width="3" />
+                    <circle cx="50" cy="50" r="26" fill="url(#goldGradient)" stroke="#d4af37" stroke-width="1" />
+
+                    <!-- Mewar Sun face details (Tilak, Eyes, Mustache) -->
+                    <!-- Saffron Tilak -->
+                    <path d="M50 29 L50 39" stroke="#f17829" stroke-width="3" stroke-linecap="round" fill="none" />
+                    <circle cx="50" cy="42" r="1.5" fill="#f17829" />
+
+                    <!-- Royal Eyes (outlined in gold/black) -->
+                    <path d="M39 46 Q44 42 49 46 Q44 49 39 46 Z" fill="#ffffff" stroke="#1c0a0c" stroke-width="1" />
+                    <path d="M61 46 Q56 42 51 46 Q56 49 61 46 Z" fill="#ffffff" stroke="#1c0a0c" stroke-width="1" />
+                    <!-- Pupils -->
+                    <circle cx="44" cy="45.5" r="1.5" fill="#1c0a0c" />
+                    <circle cx="56" cy="45.5" r="1.5" fill="#1c0a0c" />
+
+                    <!-- Royal Mustache (Rajputi mooch) -->
+                    <path d="M34 54 Q44 51 50 56 Q56 51 66 54 Q72 50 71 58 Q64 56 50 58 Q36 56 29 58 Q28 50 34 54 Z"
+                        fill="#1c0a0c" stroke="#d4af37" stroke-width="1" />
+
+                    <!-- Lips -->
+                    <path d="M46 63 Q50 66 54 63" stroke="#f17829" stroke-width="1.5" stroke-linecap="round"
+                        fill="none" />
+
+                    <!-- Definition of Gold Gradient & Glow Filter -->
+                    <defs>
+                        <radialGradient id="goldGradient" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#fff8db" />
+                            <stop offset="70%" stop-color="#d4af37" />
+                            <stop offset="100%" stop-color="#9a7615" />
+                        </radialGradient>
+                    </defs>
+                </svg>
+                <div>
+                    <h1
+                        class="text-xs xs:text-sm md:text-xl font-extrabold tracking-wide text-white royal-serif flex items-center gap-1">
+                        Mharo Rajasthan <span
+                            class="hidden sm:inline text-amber-500 text-[10px] px-2 py-0.5 bg-amber-500/10 rounded-full border border-amber-500/20 font-bold uppercase tracking-widest">Maharaja
+                            Edition</span>
+                    </h1>
+                    <p class="text-[9px] md:text-xs text-stone-400 font-medium">Udaipur • Nathdwara • Chittorgarh
+                        Planner</p>
+                </div>
+            </div>
+
+            <!-- Global Budget Status -->
+            <div class="flex items-center gap-2 xs:gap-3 md:gap-6 text-xs md:text-sm">
+                <div class="text-right border-r border-stone-800 pr-2 xs:pr-3 md:pr-6">
+                    <span
+                        class="text-stone-400 block text-[8px] md:text-[9px] uppercase font-bold tracking-widest">Royal
+                        Budget</span>
+                    <strong
+                        class="text-emerald-400 text-xs xs:text-sm md:text-base font-extrabold text-glow-emerald whitespace-nowrap"
+                        id="navBudget">₹56,000.00</strong>
+                </div>
+                <div class="text-right">
+                    <span
+                        class="text-stone-400 block text-[8px] md:text-[9px] uppercase font-bold tracking-widest text-amber-500">Dates</span>
+                    <strong class="text-stone-200 text-[10px] md:text-sm block sm:inline whitespace-nowrap">08 Aug - 11
+                        Aug</strong>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8 space-y-6 md:space-y-8">
+
+        <!-- Welcome Hero Cost Card (Mewari Palace Heritage Theme) -->
+        <div
+            class="heritage-gradient royal-gold-border royal-gold-glow rounded-2xl md:rounded-3xl p-5 md:p-10 relative overflow-hidden shadow-2xl">
+            <!-- Decorative Mandala Watermarks -->
+            <div class="absolute -right-24 -top-24 w-96 h-96 opacity-10 pointer-events-none text-yellow-600">
+                <svg viewBox="0 0 100 100" fill="currentColor"
+                    class="w-full h-full animate-[spin_120s_linear_infinite]">
+                    <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="0.5" fill="none"
+                        stroke-dasharray="2,2" />
+                    <circle cx="50" cy="50" r="30" stroke="currentColor" stroke-width="1" fill="none" />
+                    <path d="M50 0 L50 100 M0 50 L100 50 M15 15 L85 85 M15 85 L85 15" stroke="currentColor"
+                        stroke-width="0.5" />
+                    <polygon points="50,10 60,35 90,50 60,65 50,90 40,65 10,50 40,35" fill="none" stroke="currentColor"
+                        stroke-width="0.5" />
+                </svg>
+            </div>
+
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 items-center">
+                <div class="lg:col-span-2 space-y-4">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] font-bold uppercase tracking-wider">
+                        ⚜️ Padharo Mhare Desh! Hukum
+                    </div>
+                    <h2 class="text-2xl md:text-5xl font-black text-white leading-tight royal-serif">
+                        Mewar Expedition <br><span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-200 text-glow-amber">The
+                            Grand Palace Roadmap</span>
+                    </h2>
+                    <p class="text-stone-300 text-xs md:text-base leading-relaxed font-sans">
+                        Udaipur ki jheelein, Shrinath ji ki aarti, aur Chittorgarh Fort ka linear 16-point loop aapke
+                        liye taiyar hai.
+                    </p>
+
+                    <div class="flex flex-wrap gap-2 pt-1">
+                        <span
+                            class="bg-stone-950/80 border border-stone-800/80 px-3 py-1.5 rounded-lg text-[10px] md:text-xs font-semibold flex items-center gap-1.5">
+                            🏰 08 Aug - 11 Aug 2026
+                        </span>
+                        <span id="heroAdultsTag"
+                            class="bg-stone-950/80 border border-stone-800/80 px-3 py-1.5 rounded-lg text-[10px] md:text-xs font-semibold flex items-center gap-1.5">
+                            👳 8 Adults (4 Couples)
+                        </span>
+                        <span
+                            class="bg-stone-950/80 border border-stone-800/80 px-3 py-1.5 rounded-lg text-[10px] md:text-xs font-semibold flex items-center gap-1.5">
+                            🚗 ~770 km Road Trip
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Gold Framed Settle Card -->
+                <div
+                    class="bg-stone-950/95 border-2 border-amber-500/30 p-5 md:p-6 rounded-2xl space-y-4 shadow-2xl relative">
+                    <div class="absolute -top-1 -right-1 w-6 h-6 border-t-2 border-r-2 border-amber-500"></div>
+                    <div class="absolute -bottom-1 -left-1 w-6 h-6 border-b-2 border-l-2 border-amber-500"></div>
+
+                    <h3
+                        class="text-amber-500 font-extrabold text-[10px] md:text-xs uppercase tracking-widest royal-serif">
+                        Shahi Hisab Engine</h3>
+
+                    <div class="grid grid-cols-1 gap-2.5">
+                        <!-- Adults Controller -->
+                        <div
+                            class="p-3 bg-stone-900/60 rounded-xl border border-stone-800 flex items-center justify-between">
+                            <div>
+                                <span
+                                    class="text-[8px] md:text-[9px] text-stone-400 block uppercase font-bold tracking-widest">Total
+                                    Adults</span>
+                                <span class="text-stone-500 text-[10px] block mt-0.5">Adjust group size</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button onclick="changeAdultCount(-1)"
+                                    class="w-8 h-8 rounded-lg bg-stone-800 hover:bg-stone-700 border border-stone-700 text-amber-500 font-extrabold flex items-center justify-center transition-all text-sm select-none">-</button>
+                                <input type="number" id="adultCountInput" value="8" readonly
+                                    class="w-8 bg-transparent text-center text-white font-extrabold text-sm focus:outline-none">
+                                <button onclick="changeAdultCount(1)"
+                                    class="w-8 h-8 rounded-lg bg-stone-800 hover:bg-stone-700 border border-stone-700 text-amber-500 font-extrabold flex items-center justify-center transition-all text-sm select-none">+</button>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-stone-900/60 rounded-xl border border-stone-800">
+                            <span
+                                class="text-[8px] md:text-[9px] text-stone-400 block uppercase font-bold tracking-widest">Per
+                                Couple share</span>
+                            <div class="text-2xl md:text-3xl font-black text-amber-500 text-glow-amber royal-serif"
+                                id="coupleCost">₹14,000.00</div>
+                            <span class="text-[8px] text-stone-500 block mt-0.5">Bachat: Down from ₹15,000!</span>
+                        </div>
+                        <div class="p-3 bg-stone-900/60 rounded-xl border border-stone-800">
+                            <span
+                                class="text-[8px] md:text-[9px] text-stone-400 block uppercase font-bold tracking-widest">Individual
+                                contribution</span>
+                            <div class="text-base md:text-lg font-black text-emerald-400" id="perPersonCost">₹7,000.00
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION: WHY THESE CITIES ARE THE BEST -->
+        <section class="space-y-4">
+            <div>
+                <h3 class="text-lg md:text-2xl font-bold text-white royal-serif flex items-center gap-2">
+                    ⚜️ Shahron Ka Shahi Gaurav
+                </h3>
+                <p class="text-xs md:text-sm text-stone-400"> जानिए kyun Udaipur, Nathdwara, aur Chittorgarh aapki is
+                    road trip ko poore Bharat me sabse khaas banate hain:</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                <!-- Udaipur Card -->
+                <div
+                    class="bg-stone-900/40 border border-stone-800 p-5 rounded-xl flex flex-col justify-between space-y-4 glass-palace-card group hover:border-amber-500/40 transition-all duration-300">
+                    <div class="space-y-2">
+                        <div
+                            class="w-10 h-10 rounded-full bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-lg">
+                            🌊
+                        </div>
+                        <h4 class="text-base md:text-lg font-extrabold text-white royal-serif">Udaipur: Jheelon ki Shaan
+                        </h4>
+                        <p class="text-[10px] text-amber-500/90 font-bold uppercase tracking-widest">The Venice of the
+                            East</p>
+                        <p class="text-xs text-stone-300 leading-relaxed text-justify">
+                            Udaipur me sthit Pichola aur Fateh Sagar jaisi khubsurat jheelein, unke beech chamakte safed
+                            mehal, aur Monsoon ke badalon me ghira Sajjangarh ise duniya ka sabse romantic aur
+                            dhoop-chaav se bhara shahar banata hai. Is road trip me monsoon ki greenery aur thandi
+                            hawayen jannat jaisa ehsas dengi Hukum!
+                        </p>
+                    </div>
+                    <div
+                        class="border-t border-stone-800/80 pt-3 text-[9px] text-stone-500 uppercase tracking-widest font-semibold flex justify-between">
+                        <span>👑 Lake side luxury</span>
+                        <span>15+ Points Mapped</span>
+                    </div>
+                </div>
+
+                <!-- Nathdwara Card -->
+                <div
+                    class="bg-stone-900/40 border border-stone-800 p-5 rounded-xl flex flex-col justify-between space-y-4 glass-palace-card group hover:border-amber-500/40 transition-all duration-300">
+                    <div class="space-y-2">
+                        <div
+                            class="w-10 h-10 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-lg">
+                            🔱
+                        </div>
+                        <h4 class="text-base md:text-lg font-extrabold text-white royal-serif">Nathdwara: Divya Bhakti
+                        </h4>
+                        <p class="text-[10px] text-amber-500/90 font-bold uppercase tracking-widest">Spiritual Capital
+                        </p>
+                        <p class="text-xs text-stone-300 leading-relaxed text-justify">
+                            Yahan sthit Shrinathji ke divya darshan aur unki mangala/sandhya aarti aapke poore parivaar
+                            ko ek aisi shanti pradan karti hai jo kahin aur nahi milti. Iske sath hi duniya ki sabse
+                            unchi Mahadev Statue 'Statue of Belief' (369 ft) aur barik Pichwai artwork iski shaan ko
+                            sach me shahi banate hain.
+                        </p>
+                    </div>
+                    <div
+                        class="border-t border-stone-800/80 pt-3 text-[9px] text-stone-500 uppercase tracking-widest font-semibold flex justify-between">
+                        <span>📿 Divine aura</span>
+                        <span>9+ Points Mapped</span>
+                    </div>
+                </div>
+
+                <!-- Chittorgarh Card -->
+                <div
+                    class="bg-stone-900/40 border border-stone-800 p-5 rounded-xl flex flex-col justify-between space-y-4 glass-palace-card group hover:border-amber-500/40 transition-all duration-300">
+                    <div class="space-y-2">
+                        <div
+                            class="w-10 h-10 rounded-full bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-lg">
+                            🏰
+                        </div>
+                        <h4 class="text-base md:text-lg font-extrabold text-white royal-serif">Chittorgarh: Rajputi
+                            Shaurya</h4>
+                        <p class="text-[10px] text-amber-500/90 font-bold uppercase tracking-widest">Valor & Historical
+                            Pride</p>
+                        <p class="text-xs text-stone-300 leading-relaxed text-justify">
+                            Bharat ka sabse vishal killa (~700 acres) jo Rajputi gaurav, Meera Bai ki aatmik bhakti,
+                            Rana Kumbha ke dushmanon par vijay, aur Maharani Padmini ke balidan ki gauravshali dastan
+                            sunata hai. Iske loops par drive karte waqt aur vishal Vijay Stambha ko dekhkar har bhartiya
+                            ka seena garv se chaudha ho jata hai.
+                        </p>
+                    </div>
+                    <div
+                        class="border-t border-stone-800/80 pt-3 text-[9px] text-stone-500 uppercase tracking-widest font-semibold flex justify-between">
+                        <span>🚩 Pride & Sacrifice</span>
+                        <span>17+ Points Mapped</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="heritage-divider"><span class="heritage-symbol">⚜️ 🚩 ⚜️</span></div>
+
+        <!-- SECTION: SHAHI RASOI (BEST MEWARI RAJASTHANI VEG FOODS & SWEETS) -->
+        <section class="space-y-4">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                <div>
+                    <h3
+                        class="text-[13px] min-[360px]:text-sm xs:text-base sm:text-lg md:text-2xl font-bold text-white royal-serif flex items-center gap-2">
+                        🍲 Shahi Rasoi - Mewari Swad Aur Mithaiyan
+                    </h3>
+                    <p class="text-xs md:text-sm text-stone-400">Udaipur, Nathdwara aur Chittorgarh ke sabse behtareen
+                        aur swadisht vegetarian vyanjan:</p>
+                </div>
+                <span
+                    class="text-[10px] w-fit px-3 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-400 rounded-full font-bold uppercase tracking-widest">
+                    100% Pure Veg Delicacies
+                </span>
+            </div>
+
+            <!-- Foods Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                <!-- Udaipur Specialties -->
+                <div
+                    class="bg-stone-900/40 border border-stone-800 p-5 rounded-2xl flex flex-col justify-between space-y-4 glass-palace-card hover:border-amber-500/30 transition-all duration-300">
+                    <div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-lg">🥣</span>
+                            <h4 class="text-base font-extrabold text-white royal-serif">Udaipur Ka Zaika</h4>
+                        </div>
+                        <ul class="space-y-3 text-xs text-stone-300">
+                            <li>
+                                <strong class="text-amber-400 block">• Daal Baati Churma (Krishna Thali)</strong>
+                                <span class="text-stone-400">Panchmel dal aur dher saare desi ghee ke churma ke sath
+                                    authentic Mewari anubhav.</span>
+                            </li>
+                            <li>
+                                <strong class="text-amber-400 block">• Pyaaz & Mirchi Kachori (Hathi Pol)</strong>
+                                <span class="text-stone-400">Teekhi hari mirch aur aaloo-pyaaz ki crispy hot kachoriyan
+                                    jo local log subah naashte me khaate hain.</span>
+                            </li>
+                            <li>
+                                <strong class="text-amber-400 block">• Kulhad Coffee (Fateh Sagar)</strong>
+                                <span class="text-stone-400">Lake-side drive karte waqt mitti ke glass me behtareen hot
+                                    frothy coffee.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Nathdwara Specialties -->
+                <div
+                    class="bg-stone-900/40 border border-stone-800 p-5 rounded-2xl flex flex-col justify-between space-y-4 glass-palace-card hover:border-amber-500/30 transition-all duration-300">
+                    <div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xl">🍵</span>
+                            <h4 class="text-base font-extrabold text-white royal-serif">Nathdwara Ke Swaad</h4>
+                        </div>
+                        <ul class="space-y-3 text-xs text-stone-300">
+                            <li>
+                                <strong class="text-amber-400 block">• Pudina Chai (Temple Lane)</strong>
+                                <span class="text-stone-400">Mitti ke kulhad me fresh mint leaves se bani adrak wali
+                                    garm shahi chai. Iski khushboo divya hai.</span>
+                            </li>
+                            <li>
+                                <strong class="text-amber-400 block">• Shrinathji Ka Khamand</strong>
+                                <span class="text-stone-400">Super-soft dhokla jo tazi mirchi aur til ke shahi baghaar
+                                    ke sath parosa jata hai.</span>
+                            </li>
+                            <li>
+                                <strong class="text-amber-400 block">• Thandai & Rabdi</strong>
+                                <span class="text-stone-400">Badam, kaju aur kesar se bharpoor thandi-thandi ghoti hui
+                                    thandai aur mitti ke kasore ki rabdi.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Chittorgarh Specialties -->
+                <div
+                    class="bg-stone-900/40 border border-stone-800 p-5 rounded-2xl flex flex-col justify-between space-y-4 glass-palace-card hover:border-amber-500/30 transition-all duration-300">
+                    <div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xl">🥞</span>
+                            <h4 class="text-base font-extrabold text-white royal-serif">Chittorgarh Ke Vyanjan</h4>
+                        </div>
+                        <ul class="space-y-3 text-xs text-stone-300">
+                            <li>
+                                <strong class="text-amber-400 block">• Rajasthani Kadhi Sogra</strong>
+                                <span class="text-stone-400">Chittor ke dhabon par milne wala bajre ka sogra (thick
+                                    roti) aur dahi ke pakodon wali teekhi kadhi.</span>
+                            </li>
+                            <li>
+                                <strong class="text-amber-400 block">• Shahi Gatte Ki Sabji</strong>
+                                <span class="text-stone-400">Besan ke soft gatte ko spicy curd gravy me paka kar butter
+                                    naan ya bajre ki roti ke sath khaya jata hai.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Famous Sweets (Mithaiyaan) -->
+                <div
+                    class="bg-stone-900/40 border border-stone-800 p-5 rounded-2xl flex flex-col justify-between space-y-4 glass-palace-card hover:border-amber-500/30 transition-all duration-300">
+                    <div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xl">🍯</span>
+                            <h4 class="text-base font-extrabold text-white royal-serif">Shahi Mithaiyan</h4>
+                        </div>
+                        <ul class="space-y-3 text-xs text-stone-300">
+                            <li>
+                                <strong class="text-amber-400 block">• Kesariya Ghevar (Premium Sweet)</strong>
+                                <span class="text-stone-400">Honey-comb structure wali shahi sweets jo saffron syrup aur
+                                    malai-rabdi se coat hoti hai.</span>
+                            </li>
+                            <li>
+                                <strong class="text-amber-400 block">• Mohan Thal (Nathdwara Prasad)</strong>
+                                <span class="text-stone-400">Desi ghee aur besan se bani soft mawa-textured barfi jo
+                                    bhog me prashad ke roop me milti hai.</span>
+                            </li>
+                            <li>
+                                <strong class="text-amber-400 block">• Dil Khushal & Malpua</strong>
+                                <span class="text-stone-400">Besan mawa ki traditional barfi (Dil Khushal) aur chasni me
+                                    doobe garm-garm kesariya Malpue.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="heritage-divider"><span class="heritage-symbol">⚜️ 🚩 ⚜️</span></div>
+
+        <!-- SECTION: VERIFIED & EDITABLE COST LEDGER -->
+        <section id="budget" class="space-y-6">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+                <div>
+                    <h3
+                        class="text-[13px] min-[360px]:text-sm xs:text-base sm:text-lg md:text-2xl font-bold text-white royal-serif flex items-center gap-2">
+                        💰 Shahi Khazana Ledger & Inline Editor
+                    </h3>
+                    <p class="text-xs md:text-sm text-stone-400">Ledger ke kisi bhi item ke samne "Edit" click karke
+                        value ya descriptions update karein:</p>
+                </div>
+                <span
+                    class="text-[10px] w-fit px-3 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-400 rounded-full font-bold uppercase tracking-widest">
+                    Verified Sheet Records
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- Ledger Table & Mobile Cards Panel -->
+                <div
+                    class="bg-stone-900/40 border border-stone-850 p-4 md:p-5 rounded-2xl lg:col-span-2 space-y-6 flex flex-col justify-between glass-palace-card">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h4 class="text-sm font-bold text-amber-500 royal-serif">Active Cost Ledger Table</h4>
+                            <span
+                                class="text-xs font-semibold px-2 py-0.5 bg-stone-950 border border-stone-800 text-stone-400 rounded"
+                                id="liveTotalCount">12 items</span>
+                        </div>
+
+                        <!-- Combined Responsive Container (Table for Desktop, Cards stack for Mobile) -->
+                        <div id="ledgerResponsiveContainer">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Add Custom Expense Accordion -->
+                    <div class="border border-stone-850 rounded-xl bg-stone-950/40 overflow-hidden mb-4">
+                        <button onclick="toggleAddExpenseForm()"
+                            class="w-full px-4 py-3 flex items-center justify-between text-xs font-bold text-amber-500 hover:bg-stone-950/80 transition-all royal-serif">
+                            <span>⚜️ Naya Kharch Dakhil Karein (Add Custom Expense)</span>
+                            <span id="addExpenseCaret">▾</span>
+                        </button>
+                        <div id="addExpenseFormPanel"
+                            class="hidden p-4 border-t border-stone-800/60 bg-stone-950/60 space-y-3">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div class="space-y-1">
+                                    <label class="block text-[10px] uppercase font-bold text-stone-400">Expense
+                                        Title</label>
+                                    <input type="text" id="add-exp-name" placeholder="e.g. Traditional Puppet Gift"
+                                        class="w-full bg-stone-900 border border-stone-800 rounded px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-amber-500/50">
+                                </div>
+                                <div class="space-y-1">
+                                    <label class="block text-[10px] uppercase font-bold text-stone-400">Specs /
+                                        Details</label>
+                                    <input type="text" id="add-exp-details" placeholder="e.g. Bought 4 sets for kids"
+                                        class="w-full bg-stone-900 border border-stone-800 rounded px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-amber-500/50">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                <div class="space-y-1">
+                                    <label class="block text-[10px] uppercase font-bold text-stone-400">Price
+                                        (INR)</label>
+                                    <input type="number" id="add-exp-price" placeholder="e.g. 1200"
+                                        class="w-full bg-stone-900 border border-stone-800 rounded px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-amber-500/50">
+                                </div>
+                                <div class="space-y-1">
+                                    <label class="block text-[10px] uppercase font-bold text-stone-400">Category</label>
+                                    <select id="add-exp-category"
+                                        class="w-full bg-stone-900 border border-stone-800 rounded px-2.5 py-1.5 text-xs text-stone-300 focus:outline-none focus:border-amber-500/50">
+                                        <option value="Stays">Stays</option>
+                                        <option value="Sightseeing" selected>Sightseeing</option>
+                                        <option value="Fuel & Travel">Fuel & Travel</option>
+                                        <option value="Food Buffer">Food Buffer</option>
+                                        <option value="Miscellaneous">Miscellaneous</option>
+                                    </select>
+                                </div>
+                                <div
+                                    class="flex items-center justify-between bg-stone-900 border border-stone-800 rounded px-3 py-1.5 mt-5">
+                                    <label for="add-exp-ispaid"
+                                        class="text-[10px] uppercase font-bold text-stone-400 cursor-pointer">Paid
+                                        Status</label>
+                                    <input type="checkbox" id="add-exp-ispaid"
+                                        class="w-4 h-4 accent-amber-500 cursor-pointer">
+                                </div>
+                            </div>
+                            <div class="flex justify-end pt-1">
+                                <button onclick="addNewExpense()"
+                                    class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-xs rounded-lg shadow-lg shadow-amber-500/10 transition-colors royal-serif">
+                                    Add to Ledger
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reset & Summary Indicators -->
+                    <div
+                        class="bg-stone-950 p-4 rounded-xl border border-stone-800 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-4">
+                        <div>
+                            <span class="text-[10px] text-stone-400 uppercase font-bold tracking-widest">Aggregate Grand
+                                Total</span>
+                            <div class="text-2xl font-black text-emerald-400" id="liveGrandTotal">₹56,000.00</div>
+                        </div>
+                        <button onclick="resetBudget()"
+                            class="text-xs px-4 py-2.5 border-2 border-amber-500/20 hover:border-amber-500/50 text-amber-400 hover:text-white rounded-lg transition-all font-bold royal-serif">
+                            Reset to ₹56,000 Defaults
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Financial Health and Allocation Widget -->
+                <div class="space-y-6 lg:col-span-1">
+                    <div class="bg-stone-900/40 border border-stone-800 p-6 rounded-2xl space-y-5 glass-palace-card">
+                        <h4 class="text-xs font-black text-amber-500 uppercase tracking-widest royal-serif">Expense
+                            Shares By Segment</h4>
+                        <div class="space-y-4" id="categoryBarsContainer">
+                            <!-- Dynamic percentage bars -->
+                        </div>
+                    </div>
+
+                    <div class="bg-stone-900/40 border border-stone-800 p-6 rounded-2xl space-y-4 glass-palace-card">
+                        <h4 class="text-xs font-black text-emerald-400 uppercase tracking-widest royal-serif">Pre-paid
+                            vs Pending Balance</h4>
+                        <div class="space-y-3">
+                            <div class="flex justify-between text-xs font-bold">
+                                <span class="text-stone-400">Pre-Paid Hotels & Fuel:</span>
+                                <span class="text-emerald-400" id="paidSumText">₹46,000.00</span>
+                            </div>
+                            <div class="flex justify-between text-xs font-bold">
+                                <span class="text-stone-400">Liquid Food & Misc Buffers:</span>
+                                <span class="text-amber-500" id="pendingSumText">₹10,000.00</span>
+                            </div>
+
+                            <div
+                                class="w-full bg-stone-950 rounded-full h-3 border border-stone-800 overflow-hidden relative">
+                                <div id="paymentProgressFill"
+                                    class="bg-gradient-to-r from-amber-500 to-emerald-400 h-full transition-all duration-1000"
+                                    style="width: 82.1%"></div>
+                            </div>
+                            <p class="text-[10px] text-stone-500 leading-relaxed text-justify">
+                                *Hukum, stays and pre-booked tickets comprise the prepaid segment. Food and other
+                                miscellaneous allocations are kept as flexible buffer funds during the road drive.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="heritage-divider"><span class="heritage-symbol">⚜️ 🚩 ⚜️</span></div>
+
+        <!-- SECTION: STAYS ARCHES (JHAROKHA INTEGRATION) -->
+        <section id="stays" class="space-y-4">
+            <div>
+                <h3
+                    class="text-[13px] min-[360px]:text-sm xs:text-base sm:text-lg md:text-xl font-extrabold text-white royal-serif flex items-center flex-wrap gap-2">
+                    <span>🏨 Shahi Stays & Palace Coordinates</span>
+                    <span
+                        class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[9px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider inline-block whitespace-nowrap">4
+                        Rooms Upgraded!</span>
+                </h3>
+                <p class="text-xs text-stone-400">MakeMyTrip confirmed luxury rooms with direct Google Map paths:</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                <!-- Maan Vilas -->
+                <div
+                    class="bg-stone-900/40 border border-stone-800 p-5 rounded-2xl flex flex-col justify-between space-y-4 relative overflow-hidden glass-palace-card hover:border-amber-500/30 transition-all duration-300">
+                    <div
+                        class="absolute top-0 right-0 bg-amber-500/10 border-l border-b border-amber-500/20 text-amber-400 text-[9px] font-bold px-3 py-1 rounded-bl-xl uppercase tracking-wider">
+                        Udaipur Night
+                    </div>
+                    <div>
+                        <span class="text-[9px] text-stone-500 font-bold uppercase block tracking-wider">08-08-2026 To
+                            09-08-2026</span>
+                        <h4 class="text-base font-extrabold text-white mt-1 royal-serif">Maan Vilas, Udaipur</h4>
+                        <p class="text-[10px] text-amber-500/80 font-semibold uppercase tracking-widest mt-0.5">MMT
+                            Confirmed</p>
+                        <div
+                            class="mt-4 p-3 rounded-xl bg-stone-950/60 border border-stone-800 text-xs text-stone-300 leading-relaxed">
+                            🏰 <strong>4 x Deluxe Room</strong> | Free Access to Swimming Pool. Perfect lake-side
+                            atmosphere for 4 couples.
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between pt-2.5 border-t border-stone-800/80">
+                        <span class="text-emerald-400 font-extrabold text-base">₹12,400</span>
+                        <a href="https://maps.app.goo.gl/2rkMMLWJwy6cgHh7" target="_blank"
+                            class="px-4 py-1.5 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs rounded-lg transition-colors flex items-center gap-1.5 royal-serif shadow-lg shadow-amber-500/15">
+                            🗺️ Navigate
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Shree Vallabh Resort -->
+                <div
+                    class="bg-stone-900/40 border border-stone-800 p-5 rounded-2xl flex flex-col justify-between space-y-4 relative overflow-hidden glass-palace-card hover:border-amber-500/30 transition-all duration-300">
+                    <div
+                        class="absolute top-0 right-0 bg-amber-500/10 border-l border-b border-amber-500/20 text-amber-400 text-[9px] font-bold px-3 py-1 rounded-bl-xl uppercase tracking-wider">
+                        Nathdwara Night
+                    </div>
+                    <div>
+                        <span class="text-[9px] text-stone-500 font-bold uppercase block tracking-wider">09-08-2026 To
+                            10-08-2026</span>
+                        <h4 class="text-base font-extrabold text-white mt-1 royal-serif">Shree Vallabh Resort, Nathdwara
+                        </h4>
+                        <p class="text-[10px] text-amber-500/80 font-semibold uppercase tracking-widest mt-0.5">MMT
+                            Confirmed</p>
+                        <div
+                            class="mt-4 p-3 rounded-xl bg-stone-950/60 border border-stone-800 text-xs text-stone-300 leading-relaxed">
+                            住宅 <strong>4 x Deluxe Room</strong> | Closely situated to the Shrinathji Temple complex.
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between pt-2.5 border-t border-stone-800/80">
+                        <span class="text-emerald-400 font-extrabold text-base">₹8,664</span>
+                        <a href="https://maps.app.goo.gl/7CwJSsiLeR45JxvZ6" target="_blank"
+                            class="px-4 py-1.5 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs rounded-lg transition-colors flex items-center gap-1.5 royal-serif shadow-lg shadow-amber-500/15">
+                            🗺️ Navigate
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hotel Kumbha Retreat -->
+                <div
+                    class="bg-stone-900/40 border border-stone-800 p-5 rounded-2xl flex flex-col justify-between space-y-4 relative overflow-hidden glass-palace-card hover:border-amber-500/30 transition-all duration-300">
+                    <div
+                        class="absolute top-0 right-0 bg-amber-500/10 border-l border-b border-amber-500/20 text-amber-400 text-[9px] font-bold px-3 py-1 rounded-bl-xl uppercase tracking-wider">
+                        Chittorgarh Night
+                    </div>
+                    <div>
+                        <span class="text-[9px] text-stone-500 font-bold uppercase block tracking-wider">10-08-2026 To
+                            11-08-2026</span>
+                        <h4 class="text-base font-extrabold text-white mt-1 royal-serif">Hotel Kumbha Retreat & SPA</h4>
+                        <p class="text-[10px] text-amber-500/80 font-semibold uppercase tracking-widest mt-0.5">MMT
+                            Confirmed</p>
+                        <div
+                            class="mt-4 p-3 rounded-xl bg-stone-950/60 border border-stone-800 text-xs text-stone-300 leading-relaxed">
+                            ⛰️ <strong>4 Rooms Combo</strong> | Free Cancellation included. High-end spa resort
+                            experience.
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between pt-2.5 border-t border-stone-800/80">
+                        <span class="text-emerald-400 font-extrabold text-base">₹7,336</span>
+                        <a href="https://maps.app.goo.gl/hV3RQXmGvC74E7ho6" target="_blank"
+                            class="px-4 py-1.5 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs rounded-lg transition-colors flex items-center gap-1.5 royal-serif shadow-lg shadow-amber-500/15">
+                            🗺️ Navigate
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="heritage-divider"><span class="heritage-symbol">⚜️ 🚩 ⚜️</span></div>
+
+        <!-- SECTION: 100% SIGHTS & DAY TIMELINES -->
+        <section id="itinerary" class="space-y-6">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h3 class="text-xl md:text-2xl font-bold text-white royal-serif flex items-center gap-2">
+                        🕒 Shahi Safarnama (30+ Destinations)
+                    </h3>
+                    <p class="text-xs md:text-sm text-stone-400">August monsoon timeline map aligned linearly with
+                        expandable detailed explanations:</p>
+                </div>
+                <!-- Day Tabs Switcher (Scrollable seamlessly on mobile) -->
+                <div
+                    class="flex bg-stone-950 p-1.5 rounded-xl border border-stone-800 gap-1 overflow-x-auto no-scrollbar self-start max-w-full">
+                    <button onclick="switchDay(1)" id="btn-day1"
+                        class="tab-btn px-4 py-2.5 rounded-lg text-xs font-extrabold transition-all bg-amber-500 text-stone-950 whitespace-nowrap royal-serif">
+                        Day 1 (08 Aug)
+                    </button>
+                    <button onclick="switchDay(2)" id="btn-day2"
+                        class="tab-btn px-4 py-2.5 rounded-lg text-xs font-extrabold transition-all text-stone-400 hover:text-white whitespace-nowrap royal-serif">
+                        Day 2 (09 Aug)
+                    </button>
+                    <button onclick="switchDay(3)" id="btn-day3"
+                        class="tab-btn px-4 py-2.5 rounded-lg text-xs font-extrabold transition-all text-stone-400 hover:text-white whitespace-nowrap royal-serif">
+                        Day 3 (10 Aug)
+                    </button>
+                    <button onclick="switchDay(4)" id="btn-day4"
+                        class="tab-btn px-4 py-2.5 rounded-lg text-xs font-extrabold transition-all text-stone-400 hover:text-white whitespace-nowrap royal-serif">
+                        Day 4 (11 Aug)
+                    </button>
+                </div>
+            </div>
+
+            <!-- DAY 1 CONTENT -->
+            <div id="day1-content" class="day-content space-y-6">
+                <div
+                    class="bg-indigo-950/20 border border-indigo-500/20 p-4 rounded-xl flex items-center justify-between text-xs">
+                    <span class="text-indigo-300">🎯 <strong>Day 1 Focus:</strong> Udaipur majestic lakes, royal palace,
+                        2 ropesways, folk dance & ghats.</span>
+                    <span class="text-amber-500 font-bold">Drive: 259 km (AHM to UDP)</span>
+                </div>
+
+                <div class="relative border-l-2 border-amber-500/30 ml-2 md:ml-6 space-y-8">
+                    <!-- Point 1 -->
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-amber-500 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-amber-500 font-bold uppercase tracking-widest">05:30 AM - 10:00 AM
+                        </div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-ahm-udp')">Ahmedabad to Udaipur Highway Run ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Ahmedabad se subah jaldi niklein taaki highway traffic na
+                            mile aur road trip dhoop-free shuru ho.</p>
+
+                        <!-- Expanded Details -->
+                        <div id="sp-ahm-udp"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> NH-48 par continuous multi-lane
+                                driving corridor jo Gujarat aur Rajasthan ko connect karta hai.</p>
+                            <p><strong class="text-amber-400">📖 Itihas aur Shaan:</strong> Shyamlaji ke prachin mandir
+                                bypass se nikalte hue, rasta dharohar aur haseen pahadiyon ki shuruat ko darshata hai.
+                            </p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Sabse behtareen pitstop
+                                Himatnagar ya Shyamlaji bypass par lijiye jahan swadisht highway tea aur parathe milte
+                                hain.</p>
+                        </div>
+                    </div>
+
+                    <!-- Point 2 -->
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold uppercase tracking-widest">10:00 AM - 11:00 AM
+                        </div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-maan-vilas')">Hotel Check-in @ Maan Vilas ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Luggage settle karein, fresh ho kar energy gather karein.
+                        </p>
+
+                        <div id="sp-maan-vilas"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> Traditional look aur multi-amenity
+                                swimming pool ke sath luxury retreat stay.</p>
+                            <p><strong class="text-amber-400">📖 Itihas aur Shaan:</strong> Udaipur ke peaceful zone me
+                                sthit property jo Mewari hospitality (Mehman nawazi) ko reflect karti hai.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Pehle se check-in formalities
+                                MMT voucher ke sath clear rakhein taaki jaldi room access mile aur City Palace ke liye
+                                late na ho.</p>
+                        </div>
+                    </div>
+
+                    <!-- Point 3 -->
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-amber-500 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-amber-500 font-bold tracking-widest">11:15 AM - 01:15 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-city-palace')">1. City Palace Tour ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Udaipur ka primary attraction. Royal armor aur glass
+                            carving samjhne ke liye local guide zaroor lein.</p>
+
+                        <div id="sp-city-palace"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> Rajasthan ka sabse vishal aur
+                                khubsurat palace complex jo Lake Pichola ke edge par khada hai.</p>
+                            <p><strong class="text-amber-400">📖 Itihas aur Shaan:</strong> Maharana Udai Singh II dwara
+                                1559 me shuru kiya gaya complex, jisme Sheesh Mahal aur Mor Chowk ki glass-work tiles
+                                dekhne layak hain.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Badi dhoop se bachne ke liye
+                                chashma aur comfortable walking shoes zaroor pehnein. Palace ke andar walk kafi karni
+                                padegi.</p>
+                        </div>
+                    </div>
+
+                    <!-- Point 4 -->
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">01:15 PM - 02:45 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-lake-pichola')">2. Lake Pichola & 3. Jagmandir Boat Cruise ▾
+                        </h4>
+                        <p class="text-xs text-stone-400 mt-1">Bansi Ghat se comfortable ferry lekar beautiful Jagmandir
+                            island explore karein.</p>
+
+                        <div id="sp-lake-pichola"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> Pichola lake ke shaant paani me
+                                floating boat riding aur Jagmandir island par bani royal stone marble structures.</p>
+                            <p><strong class="text-amber-400">📖 Itihas aur Shaan:</strong> 14th century me bani
+                                artificial lake. Jagmandir island ka kanch-patthar design dekhkar hi Shah Jahan ko Taj
+                                Mahal banane ka idea aaya tha.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Lake views aur Jagmandir
+                                garden ke sath 3 vishal marble elephants ke samne shandar group pictures click karein.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Point 5 -->
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">02:45 PM - 03:45 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-lunch-d1')">Lunch Break @ Lake View Restaurant ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Scenic lakeside restro me delicious local Mewari thali ka
+                            swad lein.</p>
+
+                        <div id="sp-lunch-d1"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> Lake side breeze ke sath traditional
+                                Mewari cuisine thali (dal-baati-churma ya multicuisine) ka swad.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Pichola lake-side ke Lal Ghat
+                                ya Ambrai side dhabe/family restaurants behtareen ambience aur photo spots provide karte
+                                hain.</p>
+                        </div>
+                    </div>
+
+                    <!-- Point 6 -->
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">04:00 PM - 04:45 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-saheliyon')">4. Saheliyon Ki Bari ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Intact white marble fountains aur royal symmetric gardens
+                            me peaceful walk.</p>
+
+                        <div id="sp-saheliyon"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> Bina kisi pump ya electricity ke,
+                                sirf gravity aur water pressure se chalne wale historic fountains.</p>
+                            <p><strong class="text-amber-400">📖 Itihas aur Shaan:</strong> Rana Sangram Singh ne is
+                                garden ko royal ladies ke aaram ke liye banwaya tha.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Fountain pool ke pass sthit
+                                marble carvings ke sath portrait photo shoot karwayein.</p>
+                        </div>
+                    </div>
+
+                    <!-- Point 7 -->
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-amber-500 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-amber-500 font-bold">05:00 PM - 05:45 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-fatehsagar')">5. Fateh Sagar Lake & Boating ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Speed boat ride lekar thandi monsoon lakeside winds ko
+                            experience karein.</p>
+
+                        <div id="sp-fatehsagar"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> Fateh Sagar ke paani me rapid
+                                speed-boating ride aur lake-side drive path.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Boating ke bad lake-front par
+                                sthit kiosks par cold coffee aur garam pyaaz kachori khana bilkul na bhulein!</p>
+                        </div>
+                    </div>
+
+                    <!-- Point 8 -->
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-amber-500 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-amber-500 font-bold">05:45 PM - 06:30 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-neemach')">6. Neemach Mata Mandir (Ropeway Ride) ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Fateh Sagar bypass se steep ropeway ride lekar hilltop
+                            mandir se clear view dekhein.</p>
+
+                        <div id="sp-neemach"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> Hilltop par sthit shant vaishno devi
+                                darshan vibing mandir.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Hilltop se sunset ke pehle
+                                panoramic sky scenery capture karein.</p>
+                        </div>
+                    </div>
+
+                    <!-- Point 9 -->
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-amber-500 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-amber-500 font-bold">06:45 PM - 07:30 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-karnimata')">7. Karni Mata Mandir (Ropeway) ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Ropeway near Doodh Talai. Sunset ke time yahan se lake
+                            aur city lights ka view mesmerizing lagta hai.</p>
+
+                        <div id="sp-karnimata"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> Doodh Talai side se chalne wali
+                                ropeway aur Machhala hill ke top par sunset point.</p>
+                        </div>
+                    </div>
+
+                    <!-- Point 10 -->
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">07:45 PM - 08:30 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-bagore')">8. Bagore Ki Haveli & 9. Gangaur Ghat ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Watch authentic 'Dharohar Folk Dance Show' aur Gangaur
+                            Ghat ki steps par serene time bitaayein.</p>
+
+                        <div id="sp-bagore"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> Dharohar show me mitti ke matkon aur
+                                aag ke sath hone wale kathputli aur folk dances.</p>
+                        </div>
+                    </div>
+
+                    <!-- Point 11 -->
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">08:30 PM - 09:15 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-shopping-d1')">10. Hathi Pol & 11. Chand Pol ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Best markets for traditional bandhej clothing, hand-made
+                            mojris, craft artwork, and souvenirs.</p>
+
+                        <div id="sp-shopping-d1"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> Traditional Bandhani sarees,
+                                hand-made Mojris (leather shoes), wooden toys, and authentic Rajasthani miniature
+                                paintings are famous here.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Hathi Pol is best for buying
+                                handicrafts directly from artisans at reasonable prices. Be prepared to bargain gently!
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Point 12 -->
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">09:30 PM Onwards</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-ambrai')">12. Ambrai Ghat - Shahi Dinner ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Raat ke time glowing Lake Palace view ke sath beautiful
+                            lakeside premium dinner.</p>
+
+                        <div id="sp-ambrai"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> Located right opposite the City
+                                Palace, this ghat offers the most breathtaking night views of Lake Palace and Jag Mandir
+                                all lit up.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Prior table booking at Ambrai
+                                Restaurant is highly recommended for lakeside seating. Dress in smart-casuals for the
+                                royal ambience.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DAY 2 CONTENT -->
+            <div id="day2-content" class="day-content space-y-6 hidden">
+                <div
+                    class="bg-indigo-950/20 border border-indigo-500/20 p-4 rounded-xl flex items-center justify-between text-xs">
+                    <span class="text-indigo-300">🎯 <strong>Day 2 Focus:</strong> Legendary power temples, scenic
+                        valley roads, Nathdwara town, & World's Tallest Shiva.</span>
+                    <span class="text-amber-500 font-bold">Drive: 46.5 km</span>
+                </div>
+
+                <div class="relative border-l-2 border-amber-500/30 ml-2 md:ml-6 space-y-8">
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">06:00 AM - 08:30 AM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-idana')">1. Maa Idana Mata Mandir ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Famous Shaktipeeth where Devi Maa consumes her offerings
+                            by self-lit fire bath.</p>
+
+                        <div id="sp-idana"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> A miraculous open temple where the
+                                deity is believed to bathe in natural fire (Agni Snan) spontaneously when pleased. All
+                                clothes and offerings are consumed by fire, leaving the stone idol unharmed.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Try to arrive early in the
+                                morning to witness the serene rural surroundings. Prasad of coconuts and red chunris is
+                                widely offered.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">10:00 AM - 11:00 AM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-saasbahu')">2. Sahastra Baahu (Saas Bahu) Temple ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Explore 10th-century highly detailed sand stone
+                            architecture in Nagda.</p>
+
+                        <div id="sp-saasbahu"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> A 10th-century architectural
+                                masterpiece in Nagda. Although named Saas-Bahu (Mother-in-law & Daughter-in-law), it is
+                                dedicated to Lord Vishnu and features highly intricate carvings of gods, dancers, and
+                                epic battles.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Pay close attention to the
+                                ceiling carvings and the multi-layered stone arches. Hiring a local guide for 20 minutes
+                                is well worth it to decode the legends.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">11:00 AM - 12:00 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-eklingji')">3. Eklingji Temple ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Lord Shiva temple representing historic Mewar lords
+                            worship roots.</p>
+
+                        <div id="sp-eklingji"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> The spiritual ruling deity of Mewar
+                                rulers. The temple houses a magnificent 50-feet high, four-faced black basalt statue of
+                                Lord Shiva (Eklingji).</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Photography is strictly
+                                prohibited inside the complex. Wear traditional clothing (avoid shorts/sleeveless) to
+                                ensure smooth entry into the inner sanctum.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">12:15 PM - 12:30 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-chirwa')">4. Chirwa Tunnel & Valley Drive ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Smooth bypass roadway surrounded with lush green monsoon
+                            mountain valleys.</p>
+
+                        <div id="sp-chirwa"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> A beautiful mountain-cut tunnel road
+                                surrounded by dense green Aravali forests, especially lush during the August monsoons.
+                            </p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Roll down your windows while
+                                driving through the tunnel to hear the echoes and feel the cool monsoon mountain air.
+                                Drive safely and keep speed controlled.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-slate-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">01:00 PM - 02:00 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-check-nathy')">Nathdwara Arrival & Check-in ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Settle at Shree Vallabh Resort, refresh, and try regional
+                            street flavors.</p>
+
+                        <div id="sp-check-nathy"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> Arrival in the holy town of
+                                Nathdwara and check-in at Shree Vallabh Resort, offering traditional hospitality and
+                                modern amenities.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Collect your room keys and
+                                freshen up quickly. Check the Shrinathji temple darshan timings immediately as they
+                                change daily.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">02:30 PM - 04:00 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-dwarka')">5. Dwarkadhish Temple (Kankroli) ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Beautiful lakeside temple directly framing the endless
+                            waters of Rajsamand.</p>
+
+                        <div id="sp-dwarka"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> A major temple of the Vallabh sect
+                                located on the banks of the massive Rajsamand Lake, offering serene water views combined
+                                with divine vibes.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Sit by the steps of Rajsamand
+                                Lake after your darshan. The breeze during sunset is extremely peaceful and refreshing.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">04:30 PM - 06:15 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-belief')">6. Statue of Belief & 7. Museum of Grace ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Colossal 369 Feet Shiva structure with indoor high-tech
+                            museum.</p>
+
+                        <div id="sp-belief"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> Known as 'Vishwas Swaroopam', it is
+                                the tallest Shiva statue in the world (369 ft). It contains internal exhibition halls,
+                                high-speed lifts to the shoulder level, and a glass bridge at 280 ft.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Do not miss the spectacular
+                                laser light and sound show that takes place in the evening. It paints the giant statue
+                                in vivid mythological colors.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">06:30 PM - 07:45 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-shrinathji')">8. Shrinathji Temple Darshan ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Peaceful sandhya/shayan aarti darshan inside the holy
+                            Haveli complex.</p>
+
+                        <div id="sp-shrinathji"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> The main seat of the Pushtimarg
+                                sect, housing the deity of Shrinathji represented as a 7-year-old Krishna lifting the
+                                Govardhan hill.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Leave all electronic devices,
+                                cameras, and leather items at your resort or in the car before entering the temple lane.
+                                Wear light cotton clothes as it gets crowded.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">07:45 PM - 09:30 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-nathy-market')">9. Nathdwara Local Market ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Shop Pichwai art objects and terracotta. Drink mint
+                            Pudina Chai outside!</p>
+
+                        <div id="sp-nathy-market"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> Famous for authentic Pichwai
+                                paintings, handmade terracotta toys, silver jewelry, and temple souvenirs.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Walk through the narrow
+                                'Khaudra Gali' to taste local sweets like Mohan Thal, Rabdi, and the famous hot Pudina
+                                tea served in clay pots.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DAY 3 CONTENT -->
+            <div id="day3-content" class="day-content space-y-6 hidden">
+                <div
+                    class="bg-indigo-950/20 border border-indigo-500/20 p-4 rounded-xl flex items-center justify-between text-xs">
+                    <span class="text-indigo-300">🎯 <strong>Day 3 Focus:</strong> Rich Sanwaliyaji mandir drive and
+                        Chittorgarh Fort 16-point linear loop.</span>
+                    <span class="text-amber-500 font-bold">Drive: 100 km</span>
+                </div>
+
+                <div class="relative border-l-2 border-amber-500/30 ml-2 md:ml-6 space-y-8">
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">08:00 AM - 09:30 AM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-drive-chittor')">Nathdwara to Chittorgarh Drive ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Drive through national lanes heading straight into
+                            historic Mewar flatlands.</p>
+
+                        <div id="sp-drive-chittor"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> A scenic highway drive from the holy
+                                hills of Nathdwara into the vast historical plains of Chittor via NH-758.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Keep your camera ready as you
+                                approach Chittor; the giant fort plateau suddenly rises majestically out of the flat
+                                plains.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">09:30 AM - 11:00 AM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-sanwaliyaji')">1. Shri Sanwaliyaji Seth Temple ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Most wealthy marble temple representing beautiful Krishna
+                            devotional aura.</p>
+
+                        <div id="sp-sanwaliyaji"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> Dedicated to Krishna as Sanwaliya
+                                Seth (The Dark Merchant King), this is one of the most affluent and highly revered
+                                temples in Rajasthan, carved entirely from pure white marble.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> The morning aarti is full of
+                                musical devotion. Take a few minutes to admire the detailed glasswork and gold gilding
+                                on the temple ceilings.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-amber-500 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-amber-500 font-bold">11:45 AM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-7pols')">2. Chittorgarh Fort Plateau Entry (7 Pols Gates) ▾
+                        </h4>
+                        <p class="text-xs text-stone-400 mt-1">Cross the legendary 7 colossal defensive doors inside
+                            your road trip vehicle.</p>
+
+                        <div id="sp-7pols"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> Driving through the 7 historic
+                                defensive gateways: Padan Pol, Bhairon Pol, Hanuman Pol, Ganesh Pol, Jorla Pol, Laxman
+                                Pol, and Ram Pol.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Stop near Bhairon Pol to see
+                                the cenotaphs (chhatris) of Jaimal and Patta, the young Rajput warriors who died
+                                defending the fort against Akbar.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">12:00 PM - 12:30 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-tuljabhawani')">3. Tulja Bhawani & Baan Mata Temples ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Pay your respects at the entrance gates historic warrior
+                            temples.</p>
+
+                        <div id="sp-tuljabhawani"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> Tulja Bhawani temple (built by
+                                Banvir using gold weight donation) and Baan Mata temple, the traditional kuldevi of the
+                                Mewar kings.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> These temples lie near the
+                                entrance of the fort plateau and offer a quiet, spiritual start to the fort loop.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">12:30 PM - 01:15 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-ranakumbha')">4. Rana Kumbha Palace ruins ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Ruin chambers representing the primary spot of Rani
+                            Padmini's historic sacrifice.</p>
+
+                        <div id="sp-ranakumbha"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> The oldest and largest palace ruins
+                                in the fort. It is the birthplace of Maharana Udai Singh, the site of Panna Dhai's
+                                sacrifice of her son, and features the underground chambers where Rani Padmini committed
+                                Jauhar.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Walk carefully through the
+                                double-storeyed vaulted chambers. A local guide can help you spot the exact ruins of the
+                                historic royal stables and temples.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">01:15 PM - 01:45 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-fatehprakash')">5. Fateh Prakash Palace Museum ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Intact weapons shields, royal sculptures, and historical
+                            Mewari artifacts.</p>
+
+                        <div id="sp-fatehprakash"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> Built by Maharana Fateh Singh, this
+                                grand palace is now a government museum housing rare weapon shields, stone idols,
+                                terracotta toys, and ancient paintings.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> The entry ticket is minimal
+                                (₹20). Look for the section displaying medieval armor and the giant heavy iron locks
+                                used in Rajput forts.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">01:45 PM - 02:15 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-meeratemple')">6. Meera Temple ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Poetess Meera Bai's dedicated Krishna shrine representing
+                            historic devotion.</p>
+
+                        <div id="sp-meeratemple"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> Dedicated to Meera Bai, the mystic
+                                poetess who abandoned royal life for Lord Krishna. It stands next to a larger temple of
+                                Kumbha Shyam, built in Indo-Aryan style.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Inside the temple courtyard,
+                                check out the small shrine dedicated to Meera's guru, Sant Ravidas, which contains his
+                                footprints carved in stone.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">02:15 PM - 03:00 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-vijaystambha')">7. Vijaya Stambha & 8. Jauhar Place ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">View the colossal 9-story Victory Tower built directly
+                            beside the sacred Jauhar grounds.</p>
+
+                        <div id="sp-vijaystambha"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> The 9-storeyed Tower of Victory (37
+                                meters high) built by Rana Kumbha to celebrate his victory over Malwa and Gujarat
+                                forces. The walls are covered in detailed carvings of Hindu deities, musical
+                                instruments, and seasonal motifs.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> The open grounds nearby are
+                                the sacred spot of the grand Jauhar ceremonies. Take a moment of silence to appreciate
+                                the valor and sacrifice of the royal Rajput women.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">03:00 PM - 03:20 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-samadhisvara')">9. Samadhisvara Mahadev Temple ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Shiv temple exhibiting rare triple-faced (Tri-Murti)
+                            colossal basalt stone structure.</p>
+
+                        <div id="sp-samadhisvara"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> A beautiful 11th-century Shaivite
+                                temple restored by Rana Mokal. It features a stunning three-faced (Trimurti) giant
+                                sculpture of Lord Shiva inside the garbhagriha.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Walk around the temple's
+                                outer walls to see the incredibly dense carvings of elephants, camels, and cavalry
+                                forces matching the Mewar army.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">03:20 PM - 03:45 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-gaumukh')">10. Gaumukh Kund & Shivling Reservoir ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Lush green water spring falling inside a pool directly
+                            from a cow-shaped rock opening.</p>
+
+                        <div id="sp-gaumukh"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> A deep, green rock-cut water
+                                reservoir fed by a spring that flows constantly out of a cow's mouth carving (Gaumukh),
+                                creating a beautiful spiritual waterfall.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Sit along the stairs leading
+                                down to the water and enjoy the reflection of the fort cliffs. You can also buy fish
+                                feed to throw into the water.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">03:45 PM - 04:15 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-kalika')">11. Kalika Mata Temple ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Ancient 8th-century sun temple representing spectacular
+                            historic carvings.</p>
+
+                        <div id="sp-kalika"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> Originally built as an 8th-century
+                                Sun Temple and later destroyed, it was rebuilt in the 14th century to worship Goddess
+                                Kali, representing some of the oldest architecture inside the fort.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Check out the temple's
+                                central pillar designs and the beautifully carved pillars around the outer mandapa hall.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">04:15 PM - 04:45 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-padmini')">12. Maharani Padmini Palace ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">The water surrounded palace structure linked with the
+                            mirror reflection legends.</p>
+
+                        <div id="sp-padmini"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> A beautiful three-storeyed palace
+                                structure surrounded by water, where Maharani Padmini lived. The legends of the mirror
+                                reflection shown to Alauddin Khilji are linked here.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> The palace is situated next
+                                to a lush green lawn. Walk around to find the best angle for wide landscape photos
+                                capturing the water palace reflections.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">04:45 PM - 05:00 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-surajpol')">13. Suraj Pol Eastern Viewpoint ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Sunrise fort gate. Captivating view of endless mountain
+                            ranges.</p>
+
+                        <div id="sp-surajpol"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> The main eastern gate of the fort.
+                                It offers a spectacular, unobstructed view of the surrounding plains and the distant
+                                hills of the Aravali range.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Ideal spot for sunset
+                                viewing. Watch the town below turn gold as the sun descends behind the Aravali hills.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">05:00 PM - 05:30 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-jainkirti')">14. Jain Kirti Stambh & 15. Sailana ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">7-story detailed stone tower dedicated to first Jain
+                            Tirthankara Adinath ji.</p>
+
+                        <div id="sp-jainkirti"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> A 22-meter high, 7-storeyed tower
+                                built in the 12th century by a Jain merchant. Dedicated to Adinath, the first Jain
+                                Tirthankara, it is decorated with figures of Digambara Jain monks.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Although smaller than Vijaya
+                                Stambh, its carvings are even more detailed and dense, showing the rich contribution of
+                                the Jain community to Mewar's heritage.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">05:30 PM - 05:50 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-barolia')">16. Group of Barolia Temples Ruins ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Beautiful scenic stone ruins representing calm isolated
+                            photographic spots.</p>
+
+                        <div id="sp-barolia"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> A group of quiet, atmospheric stone
+                                ruins of temples dedicated to Shiva, often ignored by regular tourists, offering
+                                absolute peace.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Perfect spot for quiet
+                                photography away from the tourist crowd. The rustic, crumbling stone columns against the
+                                monsoon sky look incredibly dramatic.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">05:50 PM - 06:30 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif cursor-pointer hover:text-amber-400 transition-colors"
+                            onclick="toggleSpotDetails('sp-ratansingh')">17. RatanSingh Palace & Ratneshwar Lake ▾</h4>
+                        <p class="text-xs text-stone-400 mt-1">Sit quietly by the lake-front capturing cool winds and
+                            sunset cloud outlines.</p>
+
+                        <div id="sp-ratansingh"
+                            class="hidden spot-details-transition mt-3 p-4 rounded-xl bg-stone-950 border border-amber-500/20 space-y-2 text-xs">
+                            <p><strong class="text-amber-400">✨ Khas Baat:</strong> Located on the northern side of the
+                                fort, this palace was built by Maharana Ratan Singh II. It stands on the edge of the
+                                scenic Ratneshwar Lake and contains beautiful courtyard ruins.</p>
+                            <p><strong class="text-emerald-400">💡 Pro-Tip Hukum:</strong> Visit this spot late in the
+                                afternoon. The reflection of the palace gates in the calm waters of Ratneshwar Talab is
+                                stunningly photogenic.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">07:00 PM Onwards</div>
+                        <h4 class="text-base font-bold text-white royal-serif">Hotel Settle & Heavy Rajasthani Dinner
+                        </h4>
+                        <p class="text-xs text-stone-400 mt-1">Check-in at Kumbha Retreat SPA, enjoy rich regional
+                            curries and rest.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DAY 4 CONTENT -->
+            <div id="day4-content" class="day-content space-y-6 hidden">
+                <div
+                    class="bg-indigo-950/20 border border-indigo-500/20 p-4 rounded-xl flex items-center justify-between text-xs">
+                    <span class="text-indigo-300">🎯 <strong>Day 4 Focus:</strong> Return travel to Ahmedabad with
+                        scenic national highway dhabas.</span>
+                    <span class="text-amber-500 font-bold">Drive: 365 km</span>
+                </div>
+
+                <div class="relative border-l-2 border-amber-500/30 ml-2 md:ml-6 space-y-8">
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">08:00 AM - 09:00 AM</div>
+                        <h4 class="text-base font-bold text-white royal-serif">Chittorgarh Breakfast Hour</h4>
+                        <p class="text-xs text-stone-400 mt-1">Enjoy warm traditional Poha, Jalebi, and parathas in
+                            local market areas.</p>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">09:30 AM</div>
+                        <h4 class="text-base font-bold text-white royal-serif">Check-out & Head Back to Ahmedabad</h4>
+                        <p class="text-xs text-stone-400 mt-1">Pack your bags and start driving safely along the
+                            multi-lane highway.</p>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-700 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-stone-500 font-bold">01:30 PM - 02:30 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif">Highway Lunch Break (Udaipur Bypass)</h4>
+                        <p class="text-xs text-stone-400 mt-1">Stop at an authentic family dhaba on NH-48 for hot paneer
+                            curry and tandoori roti.</p>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10">
+                        <span
+                            class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-amber-500 border-4 border-[#0c0506]"></span>
+                        <div class="text-[10px] text-amber-500 font-bold">04:30 PM - 05:00 PM</div>
+                        <h4 class="text-base font-bold text-white royal-serif">Safe Arrival at Ahmedabad 🏡</h4>
+                        <p class="text-xs text-stone-400 mt-1">Return safely with memorable pictures and beautiful
+                            moments.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-stone-850 bg-stone-950 py-8 text-center text-xs text-stone-500">
+        <p class="royal-serif text-stone-400 font-bold">Padharo Mhare Desh. Travel safely, Hukum.</p>
+        <p class="mt-1 text-[11px] text-stone-600">Calculated elements are dynamically matched with the verified active
+            database parameters.</p>
+    </footer>
+
+    <!-- Floating Audio Control Button -->
+    <button onclick="toggleShahiSwar()" id="audioToggleBtn"
+        class="fixed bottom-5 left-5 z-50 w-12 h-12 rounded-full bg-stone-900/90 border border-amber-500/40 text-amber-500 flex items-center justify-center shadow-2xl hover:bg-stone-800 hover:border-amber-500 transition-all text-lg"
+        title="Toggle Shahi Swar Music">
+        🔇
+    </button>
+
+    <!-- Toast Dialog -->
+    <div id="toast"
+        class="fixed bottom-5 right-5 z-50 bg-stone-900 border border-amber-500 text-white px-5 py-3.5 rounded-xl text-xs shadow-2xl transition-all duration-300 opacity-0 transform translate-y-10 pointer-events-none flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
+        <span id="toast-text">Update completed!</span>
+    </div>
+
+    <!-- JS Logic -->
+    <script>
+        const verifiedExpenses = [
+            { id: 1, name: "Udaipur Stay (Maan Vilas)", details: "4 x Deluxe Rooms | MMT Booked", price: 12400, category: "Stays", isPaid: false },
+            { id: 2, name: "City Palace Tickets", details: "8 Adults Entry Ticket", price: 3200, category: "Sightseeing", isPaid: false },
+            { id: 3, name: "Karnimata Ropeway", details: "8 Adults Ride Charges", price: 1600, category: "Sightseeing", isPaid: false },
+            { id: 4, name: "Nimachmata Ropeway", details: "8 Adults Ride Charges", price: 1600, category: "Sightseeing", isPaid: false },
+            { id: 5, name: "Fatehsagar Boating", details: "8 Adults Ride Tickets", price: 2400, category: "Sightseeing", isPaid: false },
+            { id: 6, name: "Nathdwara Stay (Shree Vallabh)", details: "4 x Deluxe Rooms | MMT Booked", price: 8500, category: "Stays", isPaid: false },
+            { id: 7, name: "Chittorgarh Stay (Kumbha Retreat)", details: "4 Rooms Combo | MMT Settle", price: 6900, category: "Stays", isPaid: false },
+            { id: 8, name: "Chittorgarh Fort", details: "8 Adults Entry Ticket", price: 400, category: "Sightseeing", isPaid: false },
+            { id: 9, name: "Toll Fee", details: "National Highway Multi-car Tolls", price: 2000, category: "Fuel & Travel", isPaid: false },
+            { id: 10, name: "Food Expenses Buffer", details: "Entire trip group meals buffer for 8 adults", price: 7000, category: "Food Buffer", isPaid: false },
+            { id: 11, name: "Other Expenses Buffer", details: "Emergency shopping & liquid cash buffer", price: 3000, category: "Miscellaneous", isPaid: false },
+            { id: 12, name: "CNG & Petrol Expenses", details: "Group travel fuel allocation (Comfortable multiple cars)", price: 7000, category: "Fuel & Travel", isPaid: false }
+        ];
+
+        let activeExpenses = [...verifiedExpenses];
+        let adultCount = 8;
+        let editingId = null;
+
+        let audioCtx = null;
+        let oscillators = [];
+        let dronePlaying = false;
+        let pluckTimer = null;
+        let melodyTimer = null;
+        let nextPluckTime = 0;
+        let currentString = 0;
+        const stringFreqs = [207.65, 277.18, 277.18, 138.59]; // Pa, Sa, Sa, Sa(low)
+        let delayNode = null;
+        let feedbackNode = null;
+        let melodyCycleCount = 0;
+
+        // Frequencies tuned to Raga Maand (Rajasthan's signature scale) in C#
+        const phraseA = [
+            { freq: 349.23, timeOffset: 0.0, vol: 0.22 },  // Ga (F4)
+            { freq: 415.30, timeOffset: 0.6, vol: 0.22 },  // Pa (G#4)
+            { freq: 466.16, timeOffset: 1.2, vol: 0.25 },  // Dha (A#4)
+            { freq: 415.30, timeOffset: 2.0, vol: 0.22 },  // Pa (G#4)
+            { freq: 349.23, timeOffset: 2.8, vol: 0.20 },  // Ga (F4)
+            { freq: 311.13, timeOffset: 3.4, vol: 0.18 },  // Re (D#4)
+            { freq: 277.18, timeOffset: 4.0, vol: 0.24 }   // Sa (C#4)
+        ];
+
+        const phraseB = [
+            { freq: 415.30, timeOffset: 0.0, vol: 0.22 },  // Pa (G#4)
+            { freq: 466.16, timeOffset: 0.6, vol: 0.22 },  // Dha (A#4)
+            { freq: 554.37, timeOffset: 1.2, vol: 0.25 },  // Sa (C#5)
+            { freq: 622.25, timeOffset: 1.8, vol: 0.25 },  // Re (D#5)
+            { freq: 554.37, timeOffset: 2.4, vol: 0.24 },  // Sa (C#5)
+            { freq: 466.16, timeOffset: 3.0, vol: 0.20 },  // Dha (A#4)
+            { freq: 415.30, timeOffset: 3.6, vol: 0.22 }   // Pa (G#4)
+        ];
+
+        let noteSpawnInterval = null;
+
+        function startNoteSpawning() {
+            if (noteSpawnInterval) clearInterval(noteSpawnInterval);
+            noteSpawnInterval = setInterval(() => {
+                if (!dronePlaying) return;
+                createFloatingNote();
+            }, 2200);
+        }
+
+        function stopNoteSpawning() {
+            if (noteSpawnInterval) {
+                clearInterval(noteSpawnInterval);
+                noteSpawnInterval = null;
+            }
+        }
+
+        function createFloatingNote() {
+            const btn = document.getElementById("audioToggleBtn");
+            if (!btn) return;
+
+            const rect = btn.getBoundingClientRect();
+            const note = document.createElement("span");
+            note.className = "absolute pointer-events-none text-amber-500 text-sm font-bold opacity-0 transition-all select-none";
+            note.innerHTML = Math.random() > 0.5 ? "🎵" : "🎶";
+            note.style.left = (rect.left + rect.width / 2 + (Math.random() - 0.5) * 15) + "px";
+            note.style.top = (rect.top - 10) + "px";
+            note.style.position = "fixed";
+            note.style.zIndex = "49";
+
+            document.body.appendChild(note);
+
+            let start = null;
+            const duration = 2000;
+            const distance = 70;
+            const startTop = rect.top - 10;
+
+            function step(timestamp) {
+                if (!start) start = timestamp;
+                const progress = timestamp - start;
+                const ratio = Math.min(progress / duration, 1);
+
+                note.style.top = (startTop - (ratio * distance)) + "px";
+                note.style.left = (parseFloat(note.style.left) + Math.sin(ratio * 2.5 * Math.PI) * 0.4) + "px";
+
+                if (ratio < 0.4) {
+                    note.style.opacity = (ratio * 2.5);
+                } else {
+                    note.style.opacity = (1 - ratio) * 1.6;
+                }
+
+                if (progress < duration) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    note.remove();
+                }
+            }
+
+            window.requestAnimationFrame(step);
+        }
+
+        window.onload = function () {
+            initCloudBudget();
+
+            // Vercel-style magnetic mousemove light glow hover effect for cards
+            document.querySelectorAll('.glass-palace-card').forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--x', `${x}px`);
+                    card.style.setProperty('--y', `${y}px`);
+                });
+            });
+
+            const autoStartAudio = () => {
+                if (!dronePlaying) {
+                    initShahiSwar();
+                }
+                ['click', 'touchstart', 'scroll', 'keydown'].forEach(evt => {
+                    document.removeEventListener(evt, autoStartAudio);
+                });
+            };
+            ['click', 'touchstart', 'scroll', 'keydown'].forEach(evt => {
+                document.addEventListener(evt, autoStartAudio, { passive: true });
+            });
+        };
+
+        function initShahiSwar() {
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+
+                // Stop any current sounds or active schedulers
+                clearTimeout(pluckTimer);
+                clearTimeout(melodyTimer);
+                oscillators.forEach(osc => {
+                    try { osc.stop(); } catch (e) { }
+                });
+                oscillators = [];
+
+                // Create delay effect for spacious temple-like echoes
+                delayNode = audioCtx.createDelay(1.5);
+                feedbackNode = audioCtx.createGain();
+                delayNode.delayTime.setValueAtTime(0.55, audioCtx.currentTime); // 550ms delay
+                feedbackNode.gain.setValueAtTime(0.38, audioCtx.currentTime);  // 38% feedback loop
+
+                delayNode.connect(feedbackNode);
+                feedbackNode.connect(delayNode);
+                delayNode.connect(audioCtx.destination);
+
+                dronePlaying = true;
+
+                // 1. Warm background resonance (gourd warmth)
+                const droneFreqs = [138.59, 207.65, 277.18];
+                droneFreqs.forEach((freq, idx) => {
+                    const osc = audioCtx.createOscillator();
+                    const gainNode = audioCtx.createGain();
+
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                    osc.detune.setValueAtTime((Math.random() - 0.5) * 8, audioCtx.currentTime);
+
+                    // Soft background drone
+                    const vol = idx === 0 ? 0.08 : 0.04;
+                    gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+                    gainNode.gain.linearRampToValueAtTime(vol, audioCtx.currentTime + 2.0);
+
+                    osc.connect(gainNode);
+                    gainNode.connect(audioCtx.destination);
+
+                    osc.start();
+                    oscillators.push(osc);
+                });
+
+                // 2. Start the rhythmic Tanpura string loop
+                nextPluckTime = audioCtx.currentTime + 0.3;
+                currentString = 0;
+                scheduler();
+
+                // 3. Start Raga Maand ambient melody loop
+                melodyCycleCount = 0;
+                playMewariMelody();
+
+                const btn = document.getElementById("audioToggleBtn");
+                if (btn) {
+                    btn.innerHTML = "🎵";
+                    btn.classList.add("playing");
+                }
+                startNoteSpawning();
+                showToast("Hukum, Raga Maand ki mangal dhun prarambh ho gayi hai. Padharo Mhare Desh!");
+            } catch (e) {
+                console.warn("AudioContext failed:", e);
+                dronePlaying = false;
+                const btn = document.getElementById("audioToggleBtn");
+                if (btn) btn.innerHTML = "🔇";
+            }
+        }
+
+        function scheduler() {
+            if (!dronePlaying || !audioCtx) return;
+
+            const scheduleAheadTime = 0.3; // schedule 300ms in advance
+            while (nextPluckTime < audioCtx.currentTime + scheduleAheadTime) {
+                const freq = stringFreqs[currentString];
+                const delay = nextPluckTime - audioCtx.currentTime;
+                pluckString(freq, delay);
+
+                // Pluck strings 1, 2, 3 at 1.1s, and 4 with a longer 1.7s pause for natural rhythm
+                const interval = (currentString === 3) ? 1.7 : 1.1;
+                nextPluckTime += interval;
+                currentString = (currentString + 1) % stringFreqs.length;
+            }
+
+            pluckTimer = setTimeout(scheduler, 100);
+        }
+
+        function pluckString(freq, delay) {
+            if (!dronePlaying || !audioCtx) return;
+
+            const time = audioCtx.currentTime + delay;
+
+            const osc = audioCtx.createOscillator();
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(freq, time);
+            osc.detune.setValueAtTime((Math.random() - 0.5) * 12, time);
+
+            const bodyOsc = audioCtx.createOscillator();
+            bodyOsc.type = 'triangle';
+            bodyOsc.frequency.setValueAtTime(freq, time);
+            bodyOsc.detune.setValueAtTime((Math.random() - 0.5) * 8, time);
+
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'peaking';
+            filter.frequency.setValueAtTime(1400, time);
+            filter.Q.setValueAtTime(4, time);
+            filter.gain.setValueAtTime(10, time);
+            filter.frequency.exponentialRampToValueAtTime(300, time + 2.5);
+
+            const lowpass = audioCtx.createBiquadFilter();
+            lowpass.type = 'lowpass';
+            lowpass.frequency.setValueAtTime(800, time);
+
+            const gainNode = audioCtx.createGain();
+            gainNode.gain.setValueAtTime(0, time);
+            gainNode.gain.linearRampToValueAtTime(0.20, time + 0.05);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, time + 3.5);
+
+            const bodyGain = audioCtx.createGain();
+            bodyGain.gain.setValueAtTime(0, time);
+            bodyGain.gain.linearRampToValueAtTime(0.15, time + 0.08);
+            bodyGain.gain.exponentialRampToValueAtTime(0.001, time + 3.0);
+
+            osc.connect(filter);
+            filter.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            if (delayNode) gainNode.connect(delayNode);
+
+            bodyOsc.connect(lowpass);
+            lowpass.connect(bodyGain);
+            bodyGain.connect(audioCtx.destination);
+            if (delayNode) bodyGain.connect(delayNode);
+
+            try {
+                osc.start(time);
+                osc.stop(time + 3.6);
+                bodyOsc.start(time);
+                bodyOsc.stop(time + 3.2);
+            } catch (e) {
+                console.error(e);
+            }
+
+            oscillators.push(osc);
+            oscillators.push(bodyOsc);
+
+            setTimeout(() => {
+                const idx1 = oscillators.indexOf(osc);
+                if (idx1 > -1) oscillators.splice(idx1, 1);
+                const idx2 = oscillators.indexOf(bodyOsc);
+                if (idx2 > -1) oscillators.splice(idx2, 1);
+            }, (delay + 3.8) * 1000);
+        }
+
+        function playMewariMelody() {
+            if (!dronePlaying || !audioCtx) return;
+
+            const phrase = (melodyCycleCount % 2 === 0) ? phraseA : phraseB;
+            phrase.forEach(noteData => {
+                // Pluck with sitar properties
+                pluckSitar(noteData.freq, noteData.timeOffset, noteData.vol);
+            });
+
+            melodyCycleCount++;
+            // Re-schedule next melody phrase in 16 seconds
+            melodyTimer = setTimeout(playMewariMelody, 16000);
+        }
+
+        function pluckSitar(freq, delay, vol) {
+            if (!dronePlaying || !audioCtx) return;
+
+            const time = audioCtx.currentTime + delay;
+
+            // Sawtooth carrier for string jawari buzz
+            const osc = audioCtx.createOscillator();
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(freq, time);
+
+            // Add a microtonal finger bend (Meend glide) for authentic Indian classical expression
+            osc.frequency.linearRampToValueAtTime(freq * 1.008, time + 0.15);
+            osc.frequency.linearRampToValueAtTime(freq, time + 0.45);
+            osc.detune.setValueAtTime((Math.random() - 0.5) * 8, time);
+
+            // Warm body generator
+            const bodyOsc = audioCtx.createOscillator();
+            bodyOsc.type = 'triangle';
+            bodyOsc.frequency.setValueAtTime(freq, time);
+
+            // Sitar resonance peak filter
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'peaking';
+            filter.frequency.setValueAtTime(1550, time);
+            filter.Q.setValueAtTime(5, time);
+            filter.gain.setValueAtTime(12, time);
+            filter.frequency.exponentialRampToValueAtTime(400, time + 2.0);
+
+            // Acoustic body filter
+            const lowpass = audioCtx.createBiquadFilter();
+            lowpass.type = 'lowpass';
+            lowpass.frequency.setValueAtTime(800, time);
+
+            const gainNode = audioCtx.createGain();
+            gainNode.gain.setValueAtTime(0, time);
+            gainNode.gain.linearRampToValueAtTime(vol, time + 0.04);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, time + 2.5);
+
+            const bodyGain = audioCtx.createGain();
+            bodyGain.gain.setValueAtTime(0, time);
+            bodyGain.gain.linearRampToValueAtTime(vol * 0.75, time + 0.06);
+            bodyGain.gain.exponentialRampToValueAtTime(0.001, time + 2.0);
+
+            osc.connect(filter);
+            filter.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            if (delayNode) gainNode.connect(delayNode);
+
+            bodyOsc.connect(lowpass);
+            lowpass.connect(bodyGain);
+            bodyGain.connect(audioCtx.destination);
+            if (delayNode) bodyGain.connect(delayNode);
+
+            try {
+                osc.start(time);
+                osc.stop(time + 2.6);
+                bodyOsc.start(time);
+                bodyOsc.stop(time + 2.2);
+            } catch (e) {
+                console.error(e);
+            }
+
+            oscillators.push(osc);
+            oscillators.push(bodyOsc);
+
+            setTimeout(() => {
+                const idx1 = oscillators.indexOf(osc);
+                if (idx1 > -1) oscillators.splice(idx1, 1);
+                const idx2 = oscillators.indexOf(bodyOsc);
+                if (idx2 > -1) oscillators.splice(idx2, 1);
+            }, (delay + 3.0) * 1000);
+        }
+
+        function playInteractionPluck() {
+            if (!dronePlaying || !audioCtx) return;
+
+            // Pick a sweet random high-register note from Raga Maand scale (high octave C#)
+            const mandNotes = [554.37, 622.25, 698.46, 830.61, 932.33]; // High Sa, Re, Ga, Pa, Dha
+            const randomNote = mandNotes[Math.floor(Math.random() * mandNotes.length)];
+
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            // Play a gentle, sparkling interactive pluck
+            pluckSitar(randomNote, 0, 0.16);
+        }
+
+        function toggleShahiSwar() {
+            if (dronePlaying) {
+                dronePlaying = false;
+                clearTimeout(pluckTimer);
+                clearTimeout(melodyTimer);
+                oscillators.forEach(osc => {
+                    try { osc.stop(); } catch (e) { }
+                });
+                oscillators = [];
+                const btn = document.getElementById("audioToggleBtn");
+                if (btn) {
+                    btn.innerHTML = "🔇";
+                    btn.classList.remove("playing");
+                }
+                stopNoteSpawning();
+                showToast("Hukum, shahi swar ko maun kar diya gaya hai.");
+            } else {
+                initShahiSwar();
+            }
+        }
+
+        function renderDashboard() {
+            renderLedgerResponsive();
+            renderCategoryBars();
+            updateCalculations();
+        }
+
+        function toggleSpotDetails(id) {
+            const panel = document.getElementById(id);
+            if (!panel) {
+                showToast("Hukum, is sthal ka shahi vivaran jald hi joda jayega.");
+                return;
+            }
+            const parent = panel.parentElement;
+            const dot = parent ? parent.querySelector("span.absolute") : null;
+
+            if (panel.classList.contains("hidden")) {
+                panel.classList.remove("hidden");
+                panel.classList.add("block");
+                showToast("Hukum, is sthal ka shahi vivaran prastut hai.");
+                playInteractionPluck();
+                if (dot) {
+                    dot.classList.remove("bg-stone-700");
+                    dot.classList.add("bg-amber-500", "animate-pulse", "border-amber-400");
+                }
+            } else {
+                panel.classList.add("hidden");
+                panel.classList.remove("block");
+                if (dot) {
+                    dot.classList.add("bg-stone-700");
+                    dot.classList.remove("bg-amber-500", "animate-pulse", "border-amber-400");
+                }
+            }
+        }
+
+        function renderLedgerResponsive() {
+            const container = document.getElementById("ledgerResponsiveContainer");
+            container.innerHTML = "";
+
+            const desktopDiv = document.createElement("div");
+            desktopDiv.className = "hidden md:block overflow-x-auto";
+            let tableHTML = `
+                <table class="w-full text-xs text-left">
+                    <thead class="text-[9px] uppercase tracking-wider text-stone-400 bg-stone-950/80 border-b border-stone-800 sticky top-0 z-20">
+                        <tr>
+                            <th class="py-3 px-4">Expense Description</th>
+                            <th class="py-3 px-4">Booking Specs / Details</th>
+                            <th class="py-3 px-4 text-right">Price (INR)</th>
+                            <th class="py-3 px-4 text-center">Paid</th>
+                            <th class="py-3 px-4 text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-stone-800/60">`;
+
+            activeExpenses.forEach(exp => {
+                if (editingId === exp.id) {
+                    tableHTML += `
+                        <tr class="bg-stone-950/40">
+                            <td class="py-3 px-4"><input type="text" id="dt-edit-name-${exp.id}" value="${exp.name}" class="w-full bg-stone-950 text-white border border-amber-500/40 rounded px-2 py-1 font-bold"></td>
+                            <td class="py-3 px-4"><input type="text" id="dt-edit-details-${exp.id}" value="${exp.details}" class="w-full bg-stone-950 text-stone-300 border border-amber-500/40 rounded px-2 py-1"></td>
+                            <td class="py-3 px-4 text-right"><input type="number" id="dt-edit-price-${exp.id}" value="${exp.price}" class="w-24 bg-stone-950 text-emerald-400 border border-amber-500/40 rounded px-2 py-1 text-right font-black"></td>
+                            <td class="py-3 px-4 text-center"><input type="checkbox" id="dt-edit-ispaid-${exp.id}" ${exp.isPaid ? 'checked' : ''} class="accent-amber-500"></td>
+                            <td class="py-3 px-4 text-center space-x-1">
+                                <button onclick="saveDesktopEdit(${exp.id})" class="px-2 py-1 bg-emerald-500 text-stone-950 rounded">Save</button>
+                                <button onclick="cancelInlineEdit()" class="px-2 py-1 bg-stone-800 text-stone-400 rounded">Cancel</button>
+                            </td>
+                        </tr>`;
+                } else {
+                    tableHTML += `
+                        <tr class="hover:bg-stone-950/40">
+                            <td class="py-4 px-4 font-bold text-white flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full ${getCategoryColor(exp.category)}"></span>${exp.name}</td>
+                            <td class="py-4 px-4 text-stone-400 text-[11px]">${exp.details}</td>
+                            <td class="py-4 px-4 text-right text-emerald-400 font-extrabold">₹${exp.price.toLocaleString('en-IN')}</td>
+                            <td class="py-4 px-4 text-center"><input type="checkbox" ${exp.isPaid ? 'checked' : ''} onchange="togglePaidStatus(${exp.id})" class="accent-amber-500"></td>
+                            <td class="py-4 px-4 text-center"><button onclick="startInlineEdit(${exp.id})" class="px-3 py-1 bg-amber-500/10 text-amber-400 rounded royal-serif">Edit</button></td>
+                        </tr>`;
+                }
+            });
+            tableHTML += `</tbody></table>`;
+            desktopDiv.innerHTML = tableHTML;
+            container.appendChild(desktopDiv);
+
+            const mobileDiv = document.createElement("div");
+            mobileDiv.className = "block md:hidden space-y-3.5";
+
+            activeExpenses.forEach(exp => {
+                const card = document.createElement("div");
+                card.className = "p-4 rounded-xl border border-stone-800/80 bg-stone-950/50 space-y-3 relative";
+
+                if (editingId === exp.id) {
+                    card.innerHTML = `
+                        <div class="space-y-2">
+                            <label class="block text-[9px] uppercase font-bold text-stone-400">Expense Title</label>
+                            <input type="text" id="mb-edit-name-${exp.id}" value="${exp.name}" class="w-full bg-stone-900 text-white border border-amber-500/40 rounded px-2.5 py-1.5 text-xs font-bold focus:outline-none focus:ring-1 focus:ring-amber-500">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-[9px] uppercase font-bold text-stone-400">Details</label>
+                            <input type="text" id="mb-edit-details-${exp.id}" value="${exp.details}" class="w-full bg-stone-900 text-stone-300 border border-amber-500/40 rounded px-2.5 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-amber-500">
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="space-y-1">
+                                <label class="block text-[9px] uppercase font-bold text-stone-400">Amount (INR)</label>
+                                <input type="number" id="mb-edit-price-${exp.id}" value="${exp.price}" class="w-full bg-stone-900 text-emerald-400 border border-amber-500/40 rounded px-2.5 py-1.5 text-xs font-black focus:outline-none focus:ring-1 focus:ring-amber-500">
+                            </div>
+                            <div class="flex flex-col justify-center items-center bg-stone-900/60 rounded-xl border border-stone-800/50 p-1">
+                                <span class="text-[8px] uppercase text-stone-500 font-bold mb-1">Paid Status</span>
+                                <input type="checkbox" id="mb-edit-ispaid-${exp.id}" ${exp.isPaid ? 'checked' : ''} class="w-4 h-4 accent-amber-500 cursor-pointer">
+                            </div>
+                        </div>
+                        <div class="flex gap-2 pt-1.5">
+                            <button onclick="saveMobileEdit(${exp.id})" class="flex-1 py-2 bg-emerald-500 text-stone-950 font-black text-xs rounded-lg shadow-md transition-all">Save Changes</button>
+                            <button onclick="cancelInlineEdit()" class="px-4 py-2 bg-stone-800 text-stone-400 font-bold text-xs rounded-lg transition-all">Cancel</button>
+                        </div>
+                    `;
+                } else {
+                    card.innerHTML = `
+                        <div class="flex justify-between items-start">
+                            <div class="space-y-1 max-w-[70%]">
+                                <span class="flex items-center gap-1.5 text-xs font-bold text-white leading-tight">
+                                    <span class="w-1.5 h-1.5 rounded-full ${getCategoryColor(exp.category)} inline-block shrink-0"></span>
+                                    ${exp.name}
+                                </span>
+                                <p class="text-[10px] text-stone-400">${exp.details}</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-emerald-400 font-extrabold text-sm block">₹${exp.price.toLocaleString('en-IN')}</span>
+                                <span class="text-[8px] uppercase font-bold tracking-wide px-1.5 py-0.5 rounded ${exp.isPaid ? 'bg-emerald-500/10 text-emerald-400' : 'bg-amber-500/10 text-amber-500'}">${exp.isPaid ? 'Paid' : 'Pending'}</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pt-2 border-t border-stone-900">
+                            <label class="flex items-center gap-1.5 text-[10px] text-stone-400 cursor-pointer">
+                                <input type="checkbox" ${exp.isPaid ? 'checked' : ''} onchange="togglePaidStatus(${exp.id})" class="w-3.5 h-3.5 accent-amber-500 rounded">
+                                <span>Mark Paid</span>
+                            </label>
+                            <button onclick="startInlineEdit(${exp.id})" class="px-2.5 py-1 bg-amber-500/10 border border-amber-500/20 text-amber-400 font-bold text-[10px] rounded-lg hover:bg-amber-500 hover:text-stone-950 transition-all royal-serif">Edit</button>
+                        </div>
+                    `;
+                }
+                mobileDiv.appendChild(card);
+            });
+            container.appendChild(mobileDiv);
+        }
+
+        function toggleAddExpenseForm() {
+            const panel = document.getElementById("addExpenseFormPanel");
+            const caret = document.getElementById("addExpenseCaret");
+            if (panel.classList.contains("hidden")) {
+                panel.classList.remove("hidden");
+                if (caret) caret.textContent = "▴";
+            } else {
+                panel.classList.add("hidden");
+                if (caret) caret.textContent = "▾";
+            }
+        }
+
+        function addNewExpense() {
+            const name = document.getElementById("add-exp-name").value.trim();
+            const details = document.getElementById("add-exp-details").value.trim();
+            const price = parseFloat(document.getElementById("add-exp-price").value);
+            const category = document.getElementById("add-exp-category").value;
+            const isPaid = document.getElementById("add-exp-ispaid").checked;
+
+            if (!name || isNaN(price) || price < 0) {
+                showToast("Please enter valid details!");
+                return;
+            }
+            const newId = activeExpenses.length > 0 ? Math.max(...activeExpenses.map(e => e.id)) + 1 : 1;
+            activeExpenses.push({ id: newId, name, details, price, category, isPaid });
+            toggleAddExpenseForm();
+            renderDashboard();
+            showToast("Hukum, naya shahi kharch jod diya gaya hai!");
+            saveToCloud();
+        }
+
+        function startInlineEdit(id) {
+            editingId = id;
+            renderLedgerResponsive();
+        }
+
+        function cancelInlineEdit() {
+            editingId = null;
+            renderLedgerResponsive();
+        }
+
+        function saveDesktopEdit(id) {
+            const nameVal = document.getElementById(`dt-edit-name-${id}`).value.trim();
+            const detailsVal = document.getElementById(`dt-edit-details-${id}`).value.trim();
+            const priceVal = parseFloat(document.getElementById(`dt-edit-price-${id}`).value);
+            const isPaidVal = document.getElementById(`dt-edit-ispaid-${id}`).checked;
+            commitEdit(id, nameVal, detailsVal, priceVal, isPaidVal);
+        }
+
+        function saveMobileEdit(id) {
+            const nameVal = document.getElementById(`mb-edit-name-${id}`).value.trim();
+            const detailsVal = document.getElementById(`mb-edit-details-${id}`).value.trim();
+            const priceVal = parseFloat(document.getElementById(`mb-edit-price-${id}`).value);
+            const isPaidVal = document.getElementById(`mb-edit-ispaid-${id}`).checked;
+            commitEdit(id, nameVal, detailsVal, priceVal, isPaidVal);
+        }
+
+        function commitEdit(id, nameVal, detailsVal, priceVal, isPaidVal) {
+            const index = activeExpenses.findIndex(e => e.id === id);
+            if (index !== -1) {
+                activeExpenses[index] = { ...activeExpenses[index], name: nameVal, details: detailsVal, price: priceVal, isPaid: isPaidVal };
+                editingId = null;
+                renderDashboard();
+                showToast("Hukum, shahi bahi-khata safalta-purvak update ho gaya hai!");
+                saveToCloud();
+            }
+        }
+
+        function getCategoryColor(cat) {
+            switch (cat) {
+                case "Stays": return "bg-indigo-500";
+                case "Sightseeing": return "bg-amber-400";
+                case "Fuel & Travel": return "bg-sky-400";
+                case "Food Buffer": return "bg-orange-400";
+                default: return "bg-stone-400";
+            }
+        }
+
+        function renderCategoryBars() {
+            const container = document.getElementById("categoryBarsContainer");
+            container.innerHTML = "";
+            let total = activeExpenses.reduce((sum, e) => sum + e.price, 0);
+            const categorySums = {};
+            activeExpenses.forEach(e => {
+                categorySums[e.category] = (categorySums[e.category] || 0) + e.price;
+            });
+            for (let cat in categorySums) {
+                const percentage = total > 0 ? ((categorySums[cat] / total) * 100).toFixed(0) : 0;
+                container.innerHTML += `
+                    <div class="space-y-1">
+                        <div class="flex justify-between text-[10px]"><span>${cat}</span><span>${percentage}%</span></div>
+                        <div class="w-full bg-stone-900 h-1 rounded-full"><div class="h-full rounded-full ${getCategoryColor(cat)}" style="width:${percentage}%"></div></div>
+                    </div>`;
+            }
+        }
+
+        function updateCalculations() {
+            let total = activeExpenses.reduce((sum, e) => sum + e.price, 0);
+            let paidSum = activeExpenses.filter(e => e.isPaid).reduce((sum, e) => sum + e.price, 0);
+            document.getElementById("liveGrandTotal").textContent = "₹" + total.toLocaleString('en-IN');
+            document.getElementById("paidSumText").textContent = "₹" + paidSum.toLocaleString('en-IN');
+            document.getElementById("pendingSumText").textContent = "₹" + (total - paidSum).toLocaleString('en-IN');
+            document.getElementById("paymentProgressFill").style.width = (total > 0 ? (paidSum / total) * 100 : 0) + "%";
+
+            const perPerson = total / adultCount;
+            document.getElementById("perPersonCost").textContent = "₹" + perPerson.toLocaleString('en-IN', { maximumFractionDigits: 0 });
+            document.getElementById("coupleCost").textContent = "₹" + (perPerson * 2).toLocaleString('en-IN', { maximumFractionDigits: 0 });
+
+            const heroAdultsTag = document.getElementById("heroAdultsTag");
+            if (heroAdultsTag) {
+                heroAdultsTag.innerHTML = `👳 ${adultCount} Adults`;
+            }
+        }
+
+        function togglePaidStatus(id) {
+            const exp = activeExpenses.find(e => e.id === id);
+            if (exp) {
+                exp.isPaid = !exp.isPaid;
+                renderDashboard();
+                saveToCloud();
+            }
+        }
+
+        function switchDay(dayNum) {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-amber-500', 'text-stone-950');
+                btn.classList.add('text-stone-400');
+            });
+            const activeBtn = document.getElementById(`btn-day${dayNum}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-stone-400');
+                activeBtn.classList.add('bg-amber-500', 'text-stone-950');
+            }
+            document.querySelectorAll('.day-content').forEach(c => c.classList.add('hidden'));
+            document.getElementById(`day${dayNum}-content`).classList.remove('hidden');
+        }
+
+        function resetBudget() {
+            activeExpenses = verifiedExpenses.map(e => ({ ...e }));
+            adultCount = 8;
+            editingId = null;
+            const input = document.getElementById("adultCountInput");
+            if (input) input.value = 8;
+            renderDashboard();
+            showToast("Hukum, bahi-khata ko shuruati shahi budget (₹56,000) par set kar diya hai!");
+            saveToCloud();
+        }
+
+        function changeAdultCount(val) {
+            adultCount = Math.max(1, adultCount + val);
+            const input = document.getElementById("adultCountInput");
+            if (input) input.value = adultCount;
+            updateCalculations();
+            saveToCloud();
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            const toastText = document.getElementById("toast-text");
+            if (!toast || !toastText) return;
+            toastText.textContent = message;
+            toast.classList.remove("opacity-0", "translate-y-10");
+            toast.classList.add("opacity-100", "translate-y-0");
+            setTimeout(() => {
+                toast.classList.remove("opacity-100", "translate-y-0");
+                toast.classList.add("opacity-0", "translate-y-10");
+            }, 3000);
+        }
+
+        // --- Shared Real-time Cloud Sync Engine using npoint.io ---
+        let cloudSaveTimeout = null;
+
+        async function initCloudBudget() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const tripId = urlParams.get('trip');
+
+            if (tripId) {
+                await loadCloudBudget();
+                // Poll every 8 seconds for real-time changes
+                setInterval(pollCloudBudget, 8000);
+                return;
+            }
+
+            const cachedTripId = localStorage.getItem('mewar_trip_id');
+            if (cachedTripId) {
+                const newUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?trip=${cachedTripId}`;
+                window.history.replaceState({ path: newUrl }, '', newUrl);
+                await loadCloudBudget();
+                setInterval(pollCloudBudget, 8000);
+                return;
+            }
+
+            // Immediately display standard local dashboard
+            renderDashboard();
+
+            // Create a new cloud database bin anonymously
+            try {
+                showToast("Hukum, naya bahi-khata cloud par darj ho raha hai...");
+                const response = await fetch('https://api.npoint.io/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        expenses: activeExpenses,
+                        adultCount: adultCount
+                    })
+                });
+                if (!response.ok) throw new Error('Bin creation failed');
+                const resData = await response.json();
+                const newTripId = resData.id;
+                if (newTripId) {
+                    localStorage.setItem('mewar_trip_id', newTripId);
+                    const newUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?trip=${newTripId}`;
+                    window.history.replaceState({ path: newUrl }, '', newUrl);
+                    showToast("Hukum, naya shared ledger taiyar hai! Sabhi ke sath link share karein.");
+                    setInterval(pollCloudBudget, 8000);
+                }
+            } catch (e) {
+                console.error("Cloud init error:", e);
+                showToast("Internet avrodh! Offline mode me chal raha hai.");
+            }
+        }
+
+        async function loadCloudBudget() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const tripId = urlParams.get('trip');
+            if (!tripId) return;
+
+            try {
+                const response = await fetch(`https://api.npoint.io/${tripId}`);
+                if (!response.ok) throw new Error('Load failed');
+                const data = await response.json();
+                if (data && data.expenses && Array.isArray(data.expenses)) {
+                    activeExpenses = data.expenses;
+                    adultCount = data.adultCount || 8;
+                    const input = document.getElementById("adultCountInput");
+                    if (input) input.value = adultCount;
+                    renderDashboard();
+                }
+            } catch (e) {
+                console.error("Cloud load error:", e);
+                renderDashboard();
+                showToast("Lekha sankalan me vilamb. Local cache upyog me hai.");
+            }
+        }
+
+        function saveToCloud() {
+            if (cloudSaveTimeout) clearTimeout(cloudSaveTimeout);
+            cloudSaveTimeout = setTimeout(async () => {
+                const urlParams = new URLSearchParams(window.location.search);
+                const tripId = urlParams.get('trip');
+                if (!tripId) return;
+
+                try {
+                    const response = await fetch(`https://api.npoint.io/${tripId}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            expenses: activeExpenses,
+                            adultCount: adultCount
+                        })
+                    });
+                    if (!response.ok) throw new Error('PUT failed');
+                    console.log("Cloud sync save successful.");
+                } catch (e) {
+                    console.error("Cloud save error:", e);
+                    showToast("Net avrodh! Badlaav offline save hue hain.");
+                }
+            }, 1200); // 1.2 second debounce
+        }
+
+        async function pollCloudBudget() {
+            // Do not sync while editing
+            if (editingId !== null) return;
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const tripId = urlParams.get('trip');
+            if (!tripId) return;
+
+            try {
+                const response = await fetch(`https://api.npoint.io/${tripId}`);
+                if (!response.ok) throw new Error('Poll failed');
+                const data = await response.json();
+                if (data && data.expenses && Array.isArray(data.expenses)) {
+                    const isDifferent = JSON.stringify(data.expenses) !== JSON.stringify(activeExpenses) ||
+                        data.adultCount !== adultCount;
+                    if (isDifferent) {
+                        activeExpenses = data.expenses;
+                        adultCount = data.adultCount || 8;
+                        const input = document.getElementById("adultCountInput");
+                        if (input) input.value = adultCount;
+                        renderDashboard();
+                        showToast("Hukum, sadasyon dwara kiye gaye badlaav sync ho gaye hain!");
+                    }
+                }
+            } catch (e) {
+                console.warn("Poll connection warning:", e);
+            }
+        }
+
+        function shareTripLink() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const tripId = urlParams.get('trip');
+            if (!tripId) {
+                showToast("Hukum, abhi link taiyar nahi hai. Kripya thodi der baad prayas karein.");
+                return;
+            }
+            const link = window.location.href;
+            navigator.clipboard.writeText(link).then(() => {
+                showToast("Hukum, shared link copy ho gayi hai! Sabhi sadasyon ko bhej dein.");
+            }).catch(err => {
+                console.error("Clipboard copy error:", err);
+                alert("Shared Link: " + link);
+            });
+        }
+    </script>
+</body>
+
+</html>
